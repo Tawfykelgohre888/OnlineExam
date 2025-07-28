@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Route, Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -8,5 +8,18 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
+constructor(private router: Router){}
+
+
+  goRegister():void{
+    this.router.navigate(['/register'])
+  }
+
+
+  goChangePass():void{
+    this.router.navigate(['/ChangePassword'])
+  }
+
+
 
 }

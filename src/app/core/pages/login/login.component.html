@@ -6,7 +6,7 @@
       </div>
       <a routerLink="/login" class="text-decoration-none fw-bold">Sing In.</a>
 
-      <button class="register btn border text-primary  ">register</button>
+      <button class="register btn border text-primary" (click)="goRegister()">register</button>
     </nav>
   </div>
 
@@ -16,13 +16,28 @@
     <h6 class="mb-4 d-flex me-auto fw-bold">Sign In</h6>
 
     <form class="w-100 d-flex flex-column gap-3">
-      <div class="form-group">
+      <div class="form-group position-relative">
         <input class="form-control" type="email" placeholder="Enter Email" id="email">
+        <span class="position-absolute top-50 translate-middle-y end-0 me-3">
+          <svg width="26" height="27" viewBox="0 0 26 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M3.92538 15.6669C4.81259 11.2426 8.52144 8.09897 12.6934 8.09897C16.8641 8.09897 20.5729 11.2426 21.4614 15.6669C21.4966 15.8424 21.5975 15.9963 21.7419 16.0946C21.8864 16.1929 22.0625 16.2276 22.2315 16.191C22.4006 16.1545 22.5488 16.0497 22.6434 15.8997C22.7381 15.7497 22.7715 15.5668 22.7363 15.3913C21.7255 10.3591 17.4976 6.74805 12.6934 6.74805C7.8892 6.74805 3.6613 10.3591 2.65051 15.3913C2.61532 15.5668 2.64872 15.7497 2.74338 15.8997C2.83804 16.0497 2.9862 16.1545 3.15525 16.191C3.32431 16.2276 3.50043 16.1929 3.64485 16.0946C3.78928 15.9963 3.89019 15.8424 3.92538 15.6669ZM12.6804 10.8008C13.888 10.8008 15.0461 11.299 15.8999 12.1857C16.7538 13.0724 17.2335 14.2751 17.2335 15.5291C17.2335 16.7831 16.7538 17.9857 15.8999 18.8724C15.0461 19.7592 13.888 20.2573 12.6804 20.2573C11.4728 20.2573 10.3147 19.7592 9.46084 18.8724C8.60697 17.9857 8.12726 16.7831 8.12726 15.5291C8.12726 14.2751 8.60697 13.0724 9.46084 12.1857C10.3147 11.299 11.4728 10.8008 12.6804 10.8008Z"
+              fill="#949BA5" />
+          </svg>
+        </span>
       </div>
-      <div class="form-group">
+      <div class="form-group position-relative">
         <input class="form-control" type="password" placeholder="Password" id="password">
+        <span class="position-absolute top-50 translate-middle-y end-0 me-3">
+          <svg width="26" height="27" viewBox="0 0 26 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M3.92538 15.6669C4.81259 11.2426 8.52144 8.09897 12.6934 8.09897C16.8641 8.09897 20.5729 11.2426 21.4614 15.6669C21.4966 15.8424 21.5975 15.9963 21.7419 16.0946C21.8864 16.1929 22.0625 16.2276 22.2315 16.191C22.4006 16.1545 22.5488 16.0497 22.6434 15.8997C22.7381 15.7497 22.7715 15.5668 22.7363 15.3913C21.7255 10.3591 17.4976 6.74805 12.6934 6.74805C7.8892 6.74805 3.6613 10.3591 2.65051 15.3913C2.61532 15.5668 2.64872 15.7497 2.74338 15.8997C2.83804 16.0497 2.9862 16.1545 3.15525 16.191C3.32431 16.2276 3.50043 16.1929 3.64485 16.0946C3.78928 15.9963 3.89019 15.8424 3.92538 15.6669ZM12.6804 10.8008C13.888 10.8008 15.0461 11.299 15.8999 12.1857C16.7538 13.0724 17.2335 14.2751 17.2335 15.5291C17.2335 16.7831 16.7538 17.9857 15.8999 18.8724C15.0461 19.7592 13.888 20.2573 12.6804 20.2573C11.4728 20.2573 10.3147 19.7592 9.46084 18.8724C8.60697 17.9857 8.12726 16.7831 8.12726 15.5291C8.12726 14.2751 8.60697 13.0724 9.46084 12.1857C10.3147 11.299 11.4728 10.8008 12.6804 10.8008Z"
+              fill="#949BA5" />
+          </svg>
+        </span>
       </div>
-      <div class="Recover d-flex ms-auto  "><a class="text-decoration-none ">Recover password?</a></div>
+      <div class="Recover d-flex ms-auto  "><a class="text-decoration-none" (click)="goChangePass()">Recover
+          password?</a></div>
       <button type="submit" class="btn btn-primary rounded-3">Login</button>
     </form>
 
