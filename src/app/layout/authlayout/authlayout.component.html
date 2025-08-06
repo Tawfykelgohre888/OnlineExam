@@ -1,19 +1,18 @@
-<div class="container-fluid p-0 m-0 vh-100 auth-wrapper">
-  <div class="row no-gutters h-100 flex-row">
+<div class="w-full h-screen p-0 m-0 auth-wrapper">
+  <div class="flex flex-row h-full bg-gradient ">
 
-    <div class="col-auto"
-      style="width: 708px;height: 100vh ;background-color: #f0f4fc;  border-top-right-radius: 120px;border-bottom-right-radius: 120px;">
-      <!--  Sidebar -->
+    <!-- Sidebar -->
+    <div class="hidden md:block w-[708px] h-full bg-[#f0f4fc] rounded-tr-[120px] rounded-br-[120px]">
       <div class="p-4">
         <div class="content">
           <div class="layout">
-            <div class="container">
+            <div class="container mx-auto">
               <div class="title">
-                <h2>Welcome to <br /> <span>Elevate</span> </h2>
-                <p class="mb-0">Quidem autem voluptatibus qui quaerat aspernatur <br> architecto natus</p>
+                <h2 class="text-2xl font-semibold mb-4">Welcome to <br /> <span class="text-blue-600">Elevate</span> </h2>
+                <p class="mb-0 text-gray-600">Quidem autem voluptatibus qui quaerat aspernatur <br> architecto natus</p>
               </div>
-              <div class="imageBackGround d-flex justify-content-center align-items-center ">
-                <img src="bro.png" alt="">
+              <div class="imageBackGround flex justify-center items-center mt-6">
+                <img src="bro.png" alt="" class="max-w-full h-auto">
               </div>
             </div>
           </div>
@@ -21,11 +20,9 @@
       </div>
     </div>
 
-    <!--  content  -->
-    <div class="col overflow-auto">
-      <router-outlet>
-
-      </router-outlet>
+    <!-- Content -->
+    <div class="flex-1 overflow-auto">
+      <router-outlet></router-outlet>
     </div>
 
   </div>

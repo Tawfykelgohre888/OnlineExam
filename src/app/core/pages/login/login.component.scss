@@ -1,24 +1,8 @@
 $main-color: #4461F2;
 
-.header .register{
-  border-radius: 20px;
-  // padding: 3px 10px;
-}
-
-
 .content .inputs button{
   background-color: $main-color !important;
 }
-
-// line
-.inputs .Recover{
-  cursor: pointer;
-}
-
-.inputs .line{
-  position: relative;
-}
-
 .line::before {
   content: "";
   position: absolute;
@@ -28,8 +12,6 @@ $main-color: #4461F2;
   height: 1px;
   background-color: #0000004d;
 }
-
-
 .line::after{
   content: "";
   position: absolute;

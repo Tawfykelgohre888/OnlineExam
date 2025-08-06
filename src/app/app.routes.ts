@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { AuthlayoutComponent } from './layout/authlayout/authlayout.component';
+import { DashboardComponent } from './core/pages/dashboard/dashboard.component';
 
 export const routes: Routes = [
   {path:"",component:AuthlayoutComponent,children:[
@@ -14,5 +15,8 @@ export const routes: Routes = [
     {path:"VERIFYRESETCODE",loadComponent:()=>import('./core/pages/verifyresetcode/verifyresetcode.component').then((c)=>c.VerifyresetcodeComponent) ,title:"VERIFYRESETCODE"},
     {path:"RESETPASSWORD",loadComponent:()=> import('./core/pages/resetpassword/resetpassword.component').then((c)=>c.RESETPASSWORDComponent) ,title:"RESETPASSWORD"},
   ]
-  }
+  },
+
+  {path:'dashboard',loadComponent:()=> import('./core/pages/dashboard/dashboard.component').then(c => DashboardComponent),title:"dashboard"}
+
 ];

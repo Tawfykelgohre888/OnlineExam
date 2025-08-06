@@ -1,25 +1,53 @@
-import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { catchError, map, Observable } from 'rxjs';
-import { AuthEndpoint } from './enum/authEndPoint';
-import { AuthApiAdaptorService } from './adapor/auth-api-adaptor.service';
-import { authApi } from './base/authApi';
-import { BASE_URL } from './BASE_URL';
+import { autApi } from './base/authApi';
+import { catchError, map, Observable, of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { authEndPoint } from './enums/endPoindApt';
+import { AuthApiAdaptorService } from './adaptor/auth-api-adaptor.service';
+import { BASEURL } from './base-url';
+
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService  implements authApi {
+export class AuthService implements autApi {
+  _httpClient = inject(HttpClient);
+  _baseUrl = inject(BASEURL)
 
-  constructor() { }
-  _httpClient= inject(HttpClient)
   _authApiAdaptorService = inject(AuthApiAdaptorService)
-  _bASE_URL = inject(BASE_URL)
 
-  login(data:any):Observable<any>{
-    return this._httpClient.post(this._bASE_URL + AuthEndpoint.SIGNIN,data)
-    .pipe(map((res => this._authApiAdaptorService.adapt(res)),
-    catchError(err => err)
-  ))
+   LOGIN(data: any): Observable<any> {
+    return this._httpClient.post(this._baseUrl + authEndPoint.SIGNIN,data)
+    .pipe(
+      map(res => this._authApiAdaptorService.adapt(res),
+      catchError(err => of(err))
+    ))
+  }
+
+
+ REGISTER(data: any): Observable<any> {
+  return  this._httpClient.post(this._baseUrl + authEndPoint.SIGNUP,data)
+  .pipe(
+    map(res => this._authApiAdaptorService.adapt(res)),
+    catchError(err => of(err))
+  )
+  }
+
+
+   CHANGEPASSWORD(data: any): Observable<any> {
+    return this._httpClient.post(this._baseUrl + authEndPoint.CHANGEPASSWORD,data)
+    .pipe(
+      map(res=> this._authApiAdaptorService.adapt(res) ),
+      catchError(err => of(err) )
+    )
+  }
+
+
+   FORGETPASSWORD(data: any): Observable<any> {
+    return this._httpClient.post(this._baseUrl  + authEndPoint.FORGETPASSWORD,data)
+    .pipe(
+      map(res => this._authApiAdaptorService.adapt(res)),
+      catchError(err => of(err))
+    )
   }
 }
