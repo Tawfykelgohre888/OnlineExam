@@ -12,22 +12,24 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class ChangepasswordComponent {
   constructor(private toster:ToastrService){}
-_authService = inject(AuthService)
-  emailForm= new FormGroup({
-    email: new FormControl('',[Validators.required,Validators.email])
+  _authService = inject(AuthService)
+
+
+
+  submitPassword = new FormGroup ({
+    createPassword: new FormControl(''),
+    confirmPassword: new FormControl(''),
   })
 
-
-  FORGETPASSWORD():void{
-    this._authService.FORGETPASSWORD(this.emailForm.value).subscribe({
+  RESETPASSWORD():void{
+    this._authService.RESETPASSWORD(this.submitPassword.value).subscribe({
       next:(res)=>{
         console.log(res);
-        this.toster.success(res.message)
       },error:(err)=>{
-        this.toster.error(err.error.message)
         console.log(err);
       }
     })
   }
+
 
 }

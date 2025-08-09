@@ -5,10 +5,15 @@
         "Changepassword",
         "DELETEACCOUNT",
         "EDITPROFILE",
+        "Elgohre",
         "FORGETPASSWORD",
         "GETLOGGEDINFO",
         "GETLOGIDDUSERENFO",
         "GETLOGIDDUSERINFO",
-        "VERIFYRESETCODE"
+        "Tawfik",
+        "Toastr",
+        "toster",
+        "VERIFYRESETCODE",
+        "Voluptatem"
     ]
 }

@@ -16,28 +16,30 @@ export class RegisterComponent {
   _authService = inject(AuthService)
 
   registerForm = new FormGroup({
-    username: new FormControl('',[Validators.maxLength(10),Validators.minLength(4)]),
-    firstName:new FormControl('',[Validators.maxLength(10),Validators.minLength(4)]),
-    lastName:new FormControl('',[Validators.maxLength(10),Validators.minLength(4)]),
-    email:new FormControl('',Validators.email),
-    password:new FormControl('',Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$')),
-    rePassword:new FormControl('',Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$')),
-    phone:new FormControl('',Validators.pattern('^01[0-2,5][0-9]{8}$'))
+    username: new FormControl('',[Validators.maxLength(7),Validators.minLength(4),Validators.required]),
+    firstName:new FormControl('',[Validators.maxLength(10),Validators.minLength(4),Validators.required]),
+    lastName:new FormControl('',[Validators.maxLength(10),Validators.minLength(4),Validators.required]),
+    email:new FormControl('',[Validators.email,Validators.required]),
+    password:new FormControl('',[Validators.pattern('^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$'),Validators.required]),
+    rePassword:new FormControl('',[Validators.pattern('^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$'),Validators.required]),
+    phone:new FormControl('',[Validators.pattern('^01[0-2,5][0-9]{8}$'),Validators.required])
   })
 
 
-  submitRegisterForm(){
-    this._authService.REGISTER(this.registerForm.value).subscribe({
-      next:(res)=>{
-        console.log(res);
-        this.toster.success(res.message)
-      },error:(err)=> {
-        console.log(err);
-        this.toster.error(err.error.message)
-      },
-    })
+submitRegisterForm(){
+  if(this.registerForm.valid){
+  this._authService.REGISTER(this.registerForm.value).subscribe({
+    next: (res) => {
+      console.log(res);
+      this.toster.success(res.message,'Register');
+    },
+    error: (err) => {
+      console.log(err);
+    this.toster.error(err.error.message,'Register')
+    }
+  });
+}else{
+  this.registerForm.markAllAsTouched()
+}
   }
-
-
-
 }

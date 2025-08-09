@@ -11,8 +11,8 @@ export const routes: Routes = [
     {path:"DELETEACCOUNT",loadComponent:()=> import('./core/pages/deleteaccount/deleteaccount.component').then((c)=>c.DeleteaccountComponent ) ,title:"DELETEACCOUNT"},
     {path:"LOGOUT",loadComponent:()=> import('./core/pages/logout/logout.component').then((c)=>c.LogoutComponent ) ,title:"LOGOUT"},
     {path:"GETLOGIDDUSERINFO",loadComponent:()=> import('./core/pages/getlogidduserinfo/getlogidduserinfo.component').then((c)=>c.GetlogidduserinfoComponent) ,title:"GETLOGIDDUSERINFO"},
-    {path:"FORGETPASSWORD",loadComponent:()=> import('./core/pages/forgetpassword/forgetpassword.component').then((c)=>c.ForgetpasswordComponent),title:"FORGETPASSWORD"},
-    {path:"VERIFYRESETCODE",loadComponent:()=>import('./core/pages/verifyresetcode/verifyresetcode.component').then((c)=>c.VerifyresetcodeComponent) ,title:"VERIFYRESETCODE"},
+    {path:"forgetPassword",loadComponent:()=> import('./core/pages/forgetpassword/forgetpassword.component').then((c)=>c.ForgetpasswordComponent),title:"FORGETPASSWORD"},
+    {path:"verifyresetcode",loadComponent:()=>import('./core/pages/verifyresetcode/verifyresetcode.component').then((c)=>c.VerifyresetcodeComponent) ,title:"VERIFYRESETCODE"},
     {path:"RESETPASSWORD",loadComponent:()=> import('./core/pages/resetpassword/resetpassword.component').then((c)=>c.RESETPASSWORDComponent) ,title:"RESETPASSWORD"},
   ]
   },

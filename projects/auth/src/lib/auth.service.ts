@@ -35,7 +35,7 @@ export class AuthService implements autApi {
 
 
    CHANGEPASSWORD(data: any): Observable<any> {
-    return this._httpClient.post(this._baseUrl + authEndPoint.CHANGEPASSWORD,data)
+    return this._httpClient.patch(this._baseUrl + authEndPoint.CHANGEPASSWORD,data)
     .pipe(
       map(res=> this._authApiAdaptorService.adapt(res) ),
       catchError(err => of(err) )
@@ -50,4 +50,23 @@ export class AuthService implements autApi {
       catchError(err => of(err))
     )
   }
+
+
+  VERIFYRESETCODE(data:any):Observable<any>{
+    return this._httpClient.post(this._baseUrl + authEndPoint.VERIFYRESETCODE,data )
+    .pipe(
+      map(res => this._authApiAdaptorService.adapt(res)),
+      catchError(err => of(err) )
+    )
+  }
+
+
+  RESETPASSWORD(data:any):Observable<any>{
+    return this._httpClient.put(this._baseUrl + authEndPoint.RESETPASSWORD,data )
+    .pipe(
+      map(res => this._authApiAdaptorService.adapt(res)),
+      catchError(err => of(err))
+    )
+  }
+
 }
