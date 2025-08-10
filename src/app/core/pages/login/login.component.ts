@@ -29,7 +29,7 @@ loginForm = new FormGroup({
     this._authService.LOGIN(this.loginForm.value).subscribe({
       next:(res)=>{
         localStorage.setItem('userToken',res.token);
-        this.router.navigate(['/dashboard'])
+        this.router.navigate(['/mainLayout/dashboard'])
         this.toster.success(res.message)
         console.log(res);
       },error:(err)=>{
