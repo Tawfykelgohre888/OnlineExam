@@ -87,7 +87,6 @@ export const routes: Routes = [
     path: 'mainLayout',
     component: MainLayoutComponent,
     children: [
-      // { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       {path:'', redirectTo:'dashboard',pathMatch:'full' },
       {
         path: 'dashboard',
