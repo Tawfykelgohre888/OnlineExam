@@ -10,19 +10,26 @@ import { headersInterceptor } from './core/Interceptor/headers/headers.intercept
 import { provideAnimations } from '@angular/platform-browser/animations';
 
 import { provideToastr } from 'ngx-toastr';
-
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { providePrimeNG } from 'primeng/config';
+import Aura from '@primeuix/themes/aura';
 export const appConfig: ApplicationConfig = {
   providers: [provideZoneChangeDetection({ eventCoalescing: true }),
      provideRouter(routes)
      ,provideClientHydration(withEventReplay()),
     provideHttpClient(withFetch(),withInterceptors([headersInterceptor])),
-    provideAnimations(), // required animations providers
-    provideToastr(), // Toastr providers
+    provideAnimations(),  
+    provideAnimationsAsync(),
+    provideToastr(), 
+            providePrimeNG({
+            theme: {
+                preset: Aura
+            }
+        }),
     {
       provide:BASEURL,
       useValue:environment.BASE_URL
     }
-
 
 
   ]

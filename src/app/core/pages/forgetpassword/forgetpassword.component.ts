@@ -13,6 +13,7 @@ import { Router, RouterLink } from '@angular/router';
 export class ForgetpasswordComponent {
   constructor(private toster:ToastrService,private router:Router){}
 _authService = inject(AuthService)
+
   emailForm= new FormGroup({
     email: new FormControl('',[Validators.required,Validators.email])
   })

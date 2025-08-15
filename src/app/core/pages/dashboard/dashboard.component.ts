@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 import { initFlowbite } from 'flowbite';
 import { SubjectService } from '../../services/subject.service';
 import { Subject } from '../../interface/get-subject';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule,RouterLink],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
 })
 export class DashboardComponent implements OnInit {
   _sub = inject(SubjectService);
-  cdr = inject(ChangeDetectorRef);
   subjects: Subject[] = [];
   limit: number = 9;
 
@@ -38,7 +38,7 @@ export class DashboardComponent implements OnInit {
 
   viewAll() {
     this.limit = this.subjects.length;
-    console.log('limit updated:', this.limit);
-    this.cdr.detectChanges();
+    this.subjects = this.subjects.slice(0,this.limit)
+    console.log('limit updated:',);
   }
 }

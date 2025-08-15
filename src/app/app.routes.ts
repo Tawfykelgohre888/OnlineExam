@@ -96,6 +96,14 @@ export const routes: Routes = [
           ),
         title: 'dashboard',
       },
+      {
+        path:"exams/:id",
+        loadComponent:()=>
+          import('./core/pages/exams/exams.component').then(
+            (c)=> c.ExamsComponent
+          ),
+          title:'exams'
+      }
     ],
   },
 ];
