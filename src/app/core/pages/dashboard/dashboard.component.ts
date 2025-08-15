@@ -18,24 +18,19 @@ export class DashboardComponent implements OnInit {
   _sub = inject(SubjectService);
   subjects: Subject[] = [];
   limit: number = 9;
-
-  private readonly ngxSpinnerService = inject(NgxSpinnerService)
   ngOnInit(): void {
     initFlowbite();
     this.displaySubject();
   }
 
   displaySubject(): void {
-    this.ngxSpinnerService.show()
     this._sub.getSubject().subscribe({
       next: (res) => {
         console.log(res);
         this.subjects = res.subjects;
-        this.ngxSpinnerService.hide()
       },
       error: (err) => {
         console.log(err);
-        this.ngxSpinnerService.hide()
       },
     });
   }
