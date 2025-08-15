@@ -5,6 +5,7 @@ import { initFlowbite } from 'flowbite';
 import { SubjectService } from '../../services/subject.service';
 import { Subject } from '../../interface/get-subject';
 import { RouterLink } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-dashboard',
@@ -18,20 +19,23 @@ export class DashboardComponent implements OnInit {
   subjects: Subject[] = [];
   limit: number = 9;
 
+  private readonly ngxSpinnerService = inject(NgxSpinnerService)
   ngOnInit(): void {
     initFlowbite();
     this.displaySubject();
   }
 
   displaySubject(): void {
+    this.ngxSpinnerService.show()
     this._sub.getSubject().subscribe({
       next: (res) => {
         console.log(res);
         this.subjects = res.subjects;
-        console.log('Subjects length:', this.subjects.length);
+        this.ngxSpinnerService.hide()
       },
       error: (err) => {
         console.log(err);
+        this.ngxSpinnerService.hide()
       },
     });
   }
