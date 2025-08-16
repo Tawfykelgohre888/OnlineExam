@@ -25,11 +25,7 @@ export class ChangepasswordComponent {
     this._authService.RESETPASSWORD(this.submitPassword.value).subscribe({
       next:(res)=>{
         console.log(res);
-      },error:(err)=>{
-        console.log(err);
       }
     })
   }
-
-
 }

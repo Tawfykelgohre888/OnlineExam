@@ -12,7 +12,7 @@ import { Exam } from '../../interface/exams';
 })
 export class ExamsComponent implements OnInit {
   examId!: string;
-  Quazes:Exam[] = [] as Exam[];
+  Quazes: Exam[] = [] as Exam[];
   constructor(
     private readonly activatedRoute: ActivatedRoute,
     private readonly examsService: ExamsService
@@ -25,13 +25,10 @@ export class ExamsComponent implements OnInit {
 
   getAllExam(): void {
     this.examId = this.activatedRoute.snapshot.paramMap.get('id')!;
-  this.examsService.getAllExamsBySubject(this.examId).subscribe({
+    this.examsService.getAllExamsBySubject(this.examId).subscribe({
       next: (res) => {
-        this.Quazes = res.exams
+        this.Quazes = res.exams;
         console.log(res.exams);
-      },
-      error: (err) => {
-        console.log(err);
       },
     });
   }

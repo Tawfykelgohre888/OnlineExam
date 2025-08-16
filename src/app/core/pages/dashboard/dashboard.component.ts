@@ -5,6 +5,7 @@ import { initFlowbite } from 'flowbite';
 import { SubjectService } from '../../services/subject.service';
 import { Subject } from '../../interface/get-subject';
 import { RouterLink } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-dashboard',
@@ -17,7 +18,6 @@ export class DashboardComponent implements OnInit {
   _sub = inject(SubjectService);
   subjects: Subject[] = [];
   limit: number = 9;
-
   ngOnInit(): void {
     initFlowbite();
     this.displaySubject();
@@ -26,13 +26,8 @@ export class DashboardComponent implements OnInit {
   displaySubject(): void {
     this._sub.getSubject().subscribe({
       next: (res) => {
-        console.log(res);
         this.subjects = res.subjects;
-        console.log('Subjects length:', this.subjects.length);
-      },
-      error: (err) => {
-        console.log(err);
-      },
+      }
     });
   }
 
