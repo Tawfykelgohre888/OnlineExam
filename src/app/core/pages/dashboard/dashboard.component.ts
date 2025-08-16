@@ -26,12 +26,8 @@ export class DashboardComponent implements OnInit {
   displaySubject(): void {
     this._sub.getSubject().subscribe({
       next: (res) => {
-        console.log(res);
         this.subjects = res.subjects;
-      },
-      error: (err) => {
-        console.log(err);
-      },
+      }
     });
   }
 

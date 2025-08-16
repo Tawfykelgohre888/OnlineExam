@@ -22,12 +22,13 @@ import { providePrimeNG } from 'primeng/config';
 import Aura from '@primeuix/themes/aura';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { lodingInterceptor } from './core/Interceptor/loding/loding.interceptor';
+import { errorInterceptor } from './core/Interceptor/error/error.interceptor';
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideClientHydration(withEventReplay()),
-    provideHttpClient(withFetch(), withInterceptors([headersInterceptor,lodingInterceptor])),
+    provideHttpClient(withFetch(), withInterceptors([headersInterceptor,lodingInterceptor,errorInterceptor])),
     provideAnimations(),
     provideAnimationsAsync(),
     provideToastr(),
