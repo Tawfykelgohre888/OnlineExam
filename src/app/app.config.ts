@@ -28,19 +28,20 @@ export const appConfig: ApplicationConfig = {
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideClientHydration(withEventReplay()),
-    provideHttpClient(withFetch(), withInterceptors([headersInterceptor,lodingInterceptor,errorInterceptor])),
+    provideHttpClient(withFetch(), withInterceptors([headersInterceptor, lodingInterceptor, errorInterceptor])),
     provideAnimations(),
     provideAnimationsAsync(),
     provideToastr(),
     importProvidersFrom(NgxSpinnerModule),
     providePrimeNG({
-      theme: {
-        preset: Aura,
-      },
+        theme: {
+            preset: Aura,
+        },
     }),
     {
-      provide: BASEURL,
-      useValue: environment.BASE_URL,
+        provide: BASEURL,
+        useValue: environment.BASE_URL,
     },
-  ],
+
+],
 };
