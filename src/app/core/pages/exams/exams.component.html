@@ -1,67 +1,147 @@
 <div class="container mx-auto px-4 mt-10 max-w-4xl">
-  <h4 class="text-2xl font-bold text-gray-700 mb-8 text-center">Available Exams</h4>
+  <h4 class="text-2xl font-bold text-gray-700 mb-8 text-center">
+    Available Exams
+  </h4>
 
   @if (Quazes.length === 0) {
-    <div
-      class="flex flex-col items-center justify-center p-10 bg-gray-50 rounded-2xl shadow-md border border-gray-200 text-center"
+  <div
+    class="flex flex-col items-center justify-center p-10 bg-gray-50 rounded-2xl shadow-md border border-gray-200 text-center"
+  >
+    <!-- Icon -->
+    <svg
+      class="w-16 h-16 text-gray-400 mb-4"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
     >
-      <!-- Icon -->
-      <svg
-        class="w-16 h-16 text-gray-400 mb-4"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M9 12h6m-6 4h6m2 5H7a2 2 0 
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M9 12h6m-6 4h6m2 5H7a2 2 0 
           01-2-2V5a2 2 0 012-2h5l2 2h5a2 
           2 0 012 2v12a2 2 0 01-2 2z"
-        />
-      </svg>
+      />
+    </svg>
 
-      <!-- Text -->
-      <h2 class="text-xl font-semibold text-gray-700 mb-2">No Exams Available</h2>
-      <p class="text-gray-500 max-w-sm mb-6">
-        There are no exams for this course at the moment. Please check back later.
-      </p>
+    <!-- Text -->
+    <h2 class="text-xl font-semibold text-gray-700 mb-2">No Exams Available</h2>
+    <p class="text-gray-500 max-w-sm mb-6">
+      There are no exams for this course at the moment. Please check back later.
+    </p>
 
-      <!-- Optional Button -->
+    <!-- Optional Button -->
+    <button
+      routerLink="/mainLayout/dashboard"
+      class="px-6 py-2 bg-blue-600 text-white text-sm rounded-lg hover:bg-blue-700 transition"
+    >
+      Back to Dashboard
+    </button>
+  </div>
+  } @for (quiz of Quazes; track quiz._id) {
+  <div
+    class="flex flex-col sm:flex-row items-center justify-between p-6 mb-5 bg-white border rounded-2xl shadow-sm hover:shadow-lg transition"
+  >
+    <!-- Exam Info -->
+    <div class="flex items-center w-full sm:w-auto mb-4 sm:mb-0">
+      <img
+        class="w-14 h-14 object-contain mr-4"
+        src="programming-language.png"
+        alt=""
+      />
+      <div>
+        <h3 class="font-semibold text-lg text-gray-800">{{ quiz.title }}</h3>
+        <p class="text-gray-500 text-sm">
+          {{ quiz.numberOfQuestions }} Questions
+        </p>
+      </div>
+    </div>
+
+    <!-- Actions -->
+    <div class="flex flex-col items-center space-y-2">
+      <span class="text-sm text-gray-600 font-bold">
+        {{ quiz.duration }} Minutes
+      </span>
       <button
-        routerLink="/mainLayout/dashboard"
-        class="px-6 py-2 bg-blue-600 text-white text-sm rounded-lg hover:bg-blue-700 transition"
+        class="px-6 py-2 bg-blue-500 text-white font-medium rounded-lg hover:bg-blue-600 transition"
+        (click)="startExam(quiz._id, quiz.duration)"
       >
-        Back to Dashboard
+        Start
       </button>
     </div>
-  }
-
-  @for (quiz of Quazes; track quiz._id) {
-    <div
-      class="flex flex-col sm:flex-row items-center justify-between p-6 mb-5 bg-white border rounded-2xl shadow-sm hover:shadow-lg transition"
-    >
-      <!-- Exam Info -->
-      <div class="flex items-center w-full sm:w-auto mb-4 sm:mb-0">
-        <img class="w-14 h-14 object-contain mr-4" src="programming-language.png" alt="">
-        <div>
-          <h3 class="font-semibold text-lg text-gray-800">{{ quiz.title }}</h3>
-          <p class="text-gray-500 text-sm">{{ quiz.numberOfQuestions }} Questions</p>
-        </div>
-      </div>
-
-      <!-- Actions -->
-      <div class="flex flex-col items-center space-y-2">
-        <span class="text-sm text-gray-600 font-bold">
-          {{ quiz.duration }} Minutes
-        </span>
-        <button
-          class="px-6 py-2 bg-blue-500 text-white font-medium rounded-lg hover:bg-blue-600 transition"
-        >
-          Start
-        </button>
-      </div>
-    </div>
+  </div>
   }
 </div>
+
+<p-dialog
+  header="Exam Questions"
+  [(visible)]="visible"
+  [modal]="true"
+  [style]="{ width: '700px' }"
+>
+  <div class="flex items-center justify-between mb-4">
+    <div class="font-semibold">
+      Time Left: <span class="text-red-600">{{ displayTime }}</span>
+    </div>
+    <div class="text-sm text-gray-600">
+      {{ currentQuestionIndex + 1 }} / {{ questions.length }}
+    </div>
+  </div>
+
+  <!-- Dots Progress -->
+  <div class="flex justify-center space-x-2 mb-6">
+    <div
+      *ngFor="let q of questions; let i = index"
+      class="w-4 h-4 rounded-full cursor-pointer"
+      [ngClass]="{
+        'bg-blue-500': answers[i] !== null,
+        'bg-gray-300': answers[i] === null,
+        'ring-2 ring-blue-500': i === currentQuestionIndex
+      }"
+      (click)="currentQuestionIndex = i"
+    ></div>
+  </div>
+
+  <ng-container *ngIf="currentQuestion as q">
+    <h2 class="text-lg font-bold mb-4">{{ q.question }}</h2>
+
+    <div class="space-y-2">
+      <div
+        *ngFor="let ans of q.answers; let j = index"
+        class="p-3 border rounded cursor-pointer"
+        [ngClass]="{
+          'bg-blue-100 border-blue-400':
+            answers[currentQuestionIndex] === ans.key,
+          'hover:bg-gray-100': answers[currentQuestionIndex] !== ans.key
+        }"
+        (click)="answers[currentQuestionIndex] = ans.key"
+      >
+        {{ ans.answer }}
+      </div>
+    </div>
+  </ng-container>
+
+  <div class="flex justify-between mt-6">
+    <button
+      pButton
+      label="Previous"
+      (click)="prevQuestion()"
+      [disabled]="currentQuestionIndex === 0"
+    ></button>
+
+    <button
+      *ngIf="currentQuestionIndex < questions.length - 1"
+      pButton
+      label="Next"
+      (click)="nextQuestion()"
+    ></button>
+
+    <button
+      *ngIf="currentQuestionIndex === questions.length - 1"
+      pButton
+      label="Finish"
+      class="p-button-success"
+      (click)="finishExam()"
+    ></button>
+  </div>
+</p-dialog>
