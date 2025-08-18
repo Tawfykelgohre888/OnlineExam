@@ -1,0 +1,25 @@
+::ng-deep .custom-dialog .p-dialog-header {
+  background: #f1f5f9; 
+  color: #111827;
+  font-weight: bold;
+}
+
+::ng-deep .custom-dialog .p-dialog-content {
+  background: #ffffff; 
+}
+
+.correct-answer {
+  background-color: #dcfce7 !important;
+  border: 2px solid #22c55e !important;
+  color: #166534 !important;
+  font-weight: 500;
+  border-radius: 8px;
+}
+
+.wrong-answer {
+  background-color: #fee2e2 !important;
+  border: 2px solid #ef4444 !important;
+  color: #991b1b !important;
+  font-weight: 500;
+  border-radius: 8px;
+}

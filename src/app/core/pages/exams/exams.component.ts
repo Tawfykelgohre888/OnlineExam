@@ -14,32 +14,31 @@ import { takeWhile } from 'rxjs/operators';
 @Component({
   selector: 'app-exams',
   standalone: true,
-  imports: [
-    RouterLink,
-    DialogModule,
-    ButtonModule,
-    InputTextModule,
-    CommonModule,
-  ],
+  imports: [RouterLink, DialogModule, ButtonModule, InputTextModule, CommonModule],
   templateUrl: './exams.component.html',
   styleUrl: './exams.component.scss',
 })
 export class ExamsComponent implements OnInit, OnDestroy {
-  visible: boolean = false;
+  visible: boolean = false;          // Dialog الأسئلة والنتيجة (صفحتين)
+  showResult: boolean = false;       // Dialog عرض الإجابات الصحيحة/الخطأ
 
-  showDialog() {
-    this.visible = true;
-  }
   examId!: string;
   Quazes: Exam[] = [] as Exam[];
   IdSubject!: string;
+
   questions: Question[] = [];
-  currentIndex: number = 0;
   answers: (string | null)[] = [];
+
   currentQuestionIndex: number = 0;
+
   timeLeft: number = 0;
   displayTime: string = '00:00';
   private timerSub?: Subscription;
+
+  // النتائج
+  score: number = 0;
+  incorrect: number = 0;
+  percentage: number = 0;
 
   constructor(
     private readonly activatedRoute: ActivatedRoute,
@@ -47,6 +46,15 @@ export class ExamsComponent implements OnInit, OnDestroy {
     private readonly questionService: QuestionService
   ) {}
 
+  ngOnInit(): void {
+    this.getAllExam();
+  }
+
+  ngOnDestroy(): void {
+    this.timerSub?.unsubscribe();
+  }
+
+  // Exams list
   getAllExam(): void {
     this.examId = this.activatedRoute.snapshot.paramMap.get('id')!;
     this.examsService.getAllExamsBySubject(this.examId).subscribe({
@@ -56,10 +64,11 @@ export class ExamsComponent implements OnInit, OnDestroy {
       },
     });
   }
+
+  // Questions
   getAllQuestion(examId: string): void {
     this.questionService.getAllQuestion(examId).subscribe({
       next: (res) => {
-        console.log(res);
         this.questions = res.questions;
         this.answers = new Array(this.questions.length).fill(null);
         this.currentQuestionIndex = 0;
@@ -73,6 +82,7 @@ export class ExamsComponent implements OnInit, OnDestroy {
       : null;
   }
 
+  // Navigation
   nextQuestion(): void {
     if (this.currentQuestionIndex < this.questions.length - 1) {
       this.currentQuestionIndex++;
@@ -85,21 +95,46 @@ export class ExamsComponent implements OnInit, OnDestroy {
     }
   }
 
-  finishExam(): void {
-    this.timerSub?.unsubscribe();
-    console.log('Final Answer:', this.answers);
-    this.visible = false;
-  }
-
+  // Start exam
   startExam(examId: string, durationMinutes: number): void {
-    this.showDialog();
+    this.visible = true;
+    this.showResult = false;
+
+    this.score = 0;
+    this.incorrect = 0;
+    this.percentage = 0;
+
     this.getAllQuestion(examId);
     this.startTimer(durationMinutes * 60);
   }
 
-  private startTimer(totalSeconds: number): void {
+  // Finish -> احسب النتيجة واعرض شاشة النتيجة داخل نفس الدialog
+  finishExam(): void {
     this.timerSub?.unsubscribe();
 
+    this.score = 0;
+    this.incorrect = 0;
+
+    // correct موجودة في الـ interface باسم q.correct
+    this.questions.forEach((q, i) => {
+      if (this.answers[i] === q.correct) {
+        this.score++;
+      } else {
+        this.incorrect++;
+      }
+    });
+
+    this.percentage = this.questions.length
+      ? Math.round((this.score / this.questions.length) * 100)
+      : 0;
+
+    // اعرض صفحة النتيجة داخل نفس الـDialog (آخر صفحة)
+    this.currentQuestionIndex = this.questions.length;
+  }
+
+  // Timer
+  private startTimer(totalSeconds: number): void {
+    this.timerSub?.unsubscribe();
     this.timeLeft = totalSeconds;
     this.displayTime = this.formatTime(this.timeLeft);
 
@@ -121,13 +156,15 @@ export class ExamsComponent implements OnInit, OnDestroy {
     const s = sec % 60;
     return `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
   }
-  ngOnDestroy(): void {
-    this.timerSub?.unsubscribe();
-  }
 
-  // End Logic Api
-  ngOnInit(): void {
-    // this.gitId();
-    this.getAllExam();
+  // لون الدايرة حسب النسبة
+  getCircleGradient(percentage: number): string {
+    if (percentage >= 80) {
+      return `conic-gradient(#22c55e ${percentage}%, #e5e7eb ${percentage}%)`; // أخضر
+    } else if (percentage >= 50) {
+      return `conic-gradient(#f59e0b ${percentage}%, #e5e7eb ${percentage}%)`; // أصفر/برتقالي
+    } else {
+      return `conic-gradient(#ef4444 ${percentage}%, #e5e7eb ${percentage}%)`; // أحمر
+    }
   }
 }
