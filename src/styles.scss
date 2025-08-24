@@ -2,11 +2,12 @@
 @import "ngx-toastr/toastr";
 @import "tailwindcss";
 @import "flowbite/src/themes/default";
+
 @plugin "flowbite/plugin";
+
 @source "../node_modules/flowbite";
-body {
-  // overflow: hidden;
-}
+
+
 
 @media (prefers-color-scheme: dark) {
   :root {

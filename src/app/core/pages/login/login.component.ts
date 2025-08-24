@@ -8,7 +8,7 @@ import {
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../../../projects/auth/src/lib/auth.service';
 import { ToastrService } from 'ngx-toastr';
-import { NavbarComponent } from "../../../layout/authlayout/navbar/navbar.component";
+import { NavbarComponent } from '../../../shared/navbar/navbar.component';
 
 @Component({
   selector: 'app-login',

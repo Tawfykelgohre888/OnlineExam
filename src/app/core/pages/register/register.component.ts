@@ -8,7 +8,7 @@ import {
 } from '@angular/forms';
 import { AuthService } from '../../../../../projects/auth/src/public-api';
 import { ToastrService } from 'ngx-toastr';
-import { NavbarComponent } from "../../../layout/authlayout/navbar/navbar.component";
+import { NavbarComponent } from '../../../shared/navbar/navbar.component';
 
 @Component({
   selector: 'app-register',

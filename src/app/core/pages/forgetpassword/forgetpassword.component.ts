@@ -8,11 +8,11 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-import { NavbarComponent } from "../../../layout/authlayout/navbar/navbar.component";
+import { NavbarComponent } from '../../../shared/navbar/navbar.component';
 
 @Component({
   selector: 'app-forgetpassword',
-  imports: [ReactiveFormsModule, RouterLink, NavbarComponent],
+  imports: [ReactiveFormsModule, NavbarComponent],
   templateUrl: './forgetpassword.component.html',
   styleUrl: './forgetpassword.component.scss',
 })
