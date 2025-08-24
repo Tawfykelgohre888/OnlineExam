@@ -8,9 +8,15 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
 
   return next(req).pipe(
     catchError((err) => {
-      // logic erroe
-      console.log(err.erroe.message);
-      toastrService.error(err.erroe.message,"Online Exam")
+      // Normalize error message to string
+      const errorMessage: string =
+        String(err?.error?.message) ||
+        err?.message?.toString() ||
+        'Something went wrong. Please try again later.';
+
+      console.error('HTTP Error:', err);
+      toastrService.error(errorMessage, 'Online Exam');
+
       return throwError(() => err);
     })
   );
