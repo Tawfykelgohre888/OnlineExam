@@ -8,11 +8,12 @@ import {
 } from '@angular/forms';
 import { AuthService } from '../../../../../projects/auth/src/public-api';
 import { ToastrService } from 'ngx-toastr';
+import { NavbarComponent } from "../../../layout/authlayout/navbar/navbar.component";
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [RouterLink, ReactiveFormsModule],
+  imports: [RouterLink, ReactiveFormsModule, NavbarComponent],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss',
 })

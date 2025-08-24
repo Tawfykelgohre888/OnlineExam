@@ -8,11 +8,12 @@ import {
 import { AuthService } from '../../../../../projects/auth/src/public-api';
 import { Router, RouterLink } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { NavbarComponent } from "../../../layout/authlayout/navbar/navbar.component";
 
 @Component({
   selector: 'app-verifyresetcode',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterLink],
+  imports: [ReactiveFormsModule, RouterLink, NavbarComponent],
   templateUrl: './verifyresetcode.component.html',
   styleUrl: './verifyresetcode.component.scss',
 })
