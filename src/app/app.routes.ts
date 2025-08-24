@@ -25,36 +25,12 @@ export const routes: Routes = [
         title: 'register',
       },
       {
-        path: 'ChangePassword',
-        loadComponent: () =>
-          import('./core/pages/changepassword/changepassword.component').then(
-            (c) => c.ChangepasswordComponent
-          ),
-        title: 'ChangePassword',
-      },
-      {
-        path: 'DELETEACCOUNT',
-        loadComponent: () =>
-          import('./core/pages/deleteaccount/deleteaccount.component').then(
-            (c) => c.DeleteaccountComponent
-          ),
-        title: 'DELETEACCOUNT',
-      },
-      {
         path: 'LOGOUT',
         loadComponent: () =>
           import('./core/pages/logout/logout.component').then(
             (c) => c.LogoutComponent
           ),
         title: 'LOGOUT',
-      },
-      {
-        path: 'GETLOGIDDUSERINFO',
-        loadComponent: () =>
-          import(
-            './core/pages/getlogidduserinfo/getlogidduserinfo.component'
-          ).then((c) => c.GetlogidduserinfoComponent),
-        title: 'GETLOGIDDUSERINFO',
       },
       {
         path: 'forgetPassword',
