@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { NavbarComponent } from "../../../layout/authlayout/navbar/navbar.component";
 
 @Component({
   selector: 'app-resetpassword',
-  imports: [],
+  imports: [NavbarComponent],
   templateUrl: './resetpassword.component.html',
   styleUrl: './resetpassword.component.scss'
 })
