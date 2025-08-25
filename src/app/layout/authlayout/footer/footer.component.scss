@@ -1,0 +1,27 @@
+.line::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -30px;
+  width:40%;
+  height: 1px;
+  background-color: #0000004d;
+}
+.line::after{
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: -30px;
+  width:40%;
+  height: 1px;
+  background-color: #0000004d;
+}
+
+
+// icons
+.icons .google , .icons .twitter, .icons .facebook, .icons .iphone{
+  width: 64px;
+  height: 64px;
+  border: 1px solid #0000001d;
+  border-radius: 20px;
+}

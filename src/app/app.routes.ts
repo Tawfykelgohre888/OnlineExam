@@ -25,14 +25,6 @@ export const routes: Routes = [
         title: 'register',
       },
       {
-        path: 'LOGOUT',
-        loadComponent: () =>
-          import('./core/pages/logout/logout.component').then(
-            (c) => c.LogoutComponent
-          ),
-        title: 'LOGOUT',
-      },
-      {
         path: 'forgetPassword',
         loadComponent: () =>
           import('./core/pages/forgetpassword/forgetpassword.component').then(

@@ -9,10 +9,11 @@ import {
 } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { NavbarComponent } from "../../../layout/authlayout/navbar/navbar.component";
+import { FooterComponent } from "../../../layout/authlayout/footer/footer.component";
 
 @Component({
   selector: 'app-forgetpassword',
-  imports: [ReactiveFormsModule, NavbarComponent],
+  imports: [ReactiveFormsModule, NavbarComponent, FooterComponent],
   templateUrl: './forgetpassword.component.html',
   styleUrl: './forgetpassword.component.scss',
 })
