@@ -13,7 +13,7 @@ import { NavbarComponent } from "../../../layout/authlayout/navbar/navbar.compon
 @Component({
   selector: 'app-verifyresetcode',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterLink, NavbarComponent],
+  imports: [ReactiveFormsModule, NavbarComponent],
   templateUrl: './verifyresetcode.component.html',
   styleUrl: './verifyresetcode.component.scss',
 })

@@ -12,7 +12,7 @@ import { NavbarComponent } from "../../../layout/authlayout/navbar/navbar.compon
 
 @Component({
   selector: 'app-forgetpassword',
-  imports: [ReactiveFormsModule, RouterLink, NavbarComponent],
+  imports: [ReactiveFormsModule, NavbarComponent],
   templateUrl: './forgetpassword.component.html',
   styleUrl: './forgetpassword.component.scss',
 })
