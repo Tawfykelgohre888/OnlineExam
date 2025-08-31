@@ -1,11 +1,14 @@
 import { Routes } from '@angular/router';
 import { AuthlayoutComponent } from './layout/authlayout/authlayout.component';
 import { MainLayoutComponent } from './layout/main-layout/main-layout.component';
+import { authGuard } from './core/guards/auth.guard';
+import { mainGuard } from './core/guards/main.guard';
 
 export const routes: Routes = [
   {
     path: '',
-    component: AuthlayoutComponent,
+    component: AuthlayoutComponent ,
+    canActivate:[mainGuard],
     children: [
       { path: '', redirectTo: 'login', pathMatch: 'full' },
       {
@@ -23,38 +26,6 @@ export const routes: Routes = [
             (c) => c.RegisterComponent
           ),
         title: 'register',
-      },
-      {
-        path: 'ChangePassword',
-        loadComponent: () =>
-          import('./core/pages/changepassword/changepassword.component').then(
-            (c) => c.ChangepasswordComponent
-          ),
-        title: 'ChangePassword',
-      },
-      {
-        path: 'DELETEACCOUNT',
-        loadComponent: () =>
-          import('./core/pages/deleteaccount/deleteaccount.component').then(
-            (c) => c.DeleteaccountComponent
-          ),
-        title: 'DELETEACCOUNT',
-      },
-      {
-        path: 'LOGOUT',
-        loadComponent: () =>
-          import('./core/pages/logout/logout.component').then(
-            (c) => c.LogoutComponent
-          ),
-        title: 'LOGOUT',
-      },
-      {
-        path: 'GETLOGIDDUSERINFO',
-        loadComponent: () =>
-          import(
-            './core/pages/getlogidduserinfo/getlogidduserinfo.component'
-          ).then((c) => c.GetlogidduserinfoComponent),
-        title: 'GETLOGIDDUSERINFO',
       },
       {
         path: 'forgetPassword',
@@ -86,6 +57,7 @@ export const routes: Routes = [
   {
     path: 'mainLayout',
     component: MainLayoutComponent,
+    canActivate:[authGuard],
     children: [
       {path:'', redirectTo:'dashboard',pathMatch:'full' },
       {

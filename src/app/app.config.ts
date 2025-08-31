@@ -23,6 +23,7 @@ import Aura from '@primeuix/themes/aura';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { lodingInterceptor } from './core/Interceptor/loding/loding.interceptor';
 import { errorInterceptor } from './core/Interceptor/error/error.interceptor';
+import { provideStore } from '@ngrx/store';
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
@@ -42,6 +43,6 @@ export const appConfig: ApplicationConfig = {
         provide: BASEURL,
         useValue: environment.BASE_URL,
     },
-
+    provideStore()
 ],
 };

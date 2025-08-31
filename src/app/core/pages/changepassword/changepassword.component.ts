@@ -3,10 +3,11 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { AuthService } from '../../../../../projects/auth/src/public-api';
 import { RouterLink } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { NavbarComponent } from "../../../layout/authlayout/navbar/navbar.component";
 
 @Component({
   selector: 'app-changepassword',
-  imports: [ReactiveFormsModule,RouterLink],
+  imports: [ReactiveFormsModule, RouterLink, NavbarComponent],
   templateUrl: './changepassword.component.html',
   styleUrl: './changepassword.component.scss'
 })

@@ -8,11 +8,13 @@ import {
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../../../projects/auth/src/lib/auth.service';
 import { ToastrService } from 'ngx-toastr';
+import { NavbarComponent } from "../../../layout/authlayout/navbar/navbar.component";
+import { FooterComponent } from "../../../layout/authlayout/footer/footer.component";
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [RouterLink, ReactiveFormsModule],
+  imports: [RouterLink, ReactiveFormsModule, NavbarComponent, FooterComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })
