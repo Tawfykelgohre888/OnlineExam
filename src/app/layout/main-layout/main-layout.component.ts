@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { Router, RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-main-layout',
@@ -9,4 +9,12 @@ import { RouterLink, RouterOutlet } from '@angular/router';
 })
 export class MainLayoutComponent {
 
+  router = inject(Router)
+
+
+
+  logout(){
+    localStorage.clear()
+    this.router.navigate(['/login'])
+  }
 }
