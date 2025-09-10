@@ -1,0 +1,103 @@
+<h2
+  mat-dialog-title
+  class="text-center font-semibold text-xl text-indigo-600 mb-3"
+>
+  📘 EXAM
+</h2>
+
+<div class="text-center mb-4" *ngIf="!submitted">
+  <span class="text-red-600 font-bold text-lg">
+    ⏱ Time Left: {{ formatTime(timeLeft) }}
+  </span>
+</div>
+
+<div class="text-center mb-4" *ngIf="submitted">
+  <span class="text-green-700 font-bold text-lg">
+    ✅ Correct: {{ score }} | ❌ Wrong: {{ wrong }}
+  </span>
+</div>
+
+<div class="text-center mb-2 text-gray-600">
+  Question {{ currentIndex + 1 }} of {{ data.questions.length }}
+</div>
+
+<mat-dialog-content class="min-h-[120px] flex flex-col items-center">
+  <p class="text-lg font-medium text-gray-800 text-center mb-4">
+    {{ currentQuestion.question }}
+  </p>
+
+  <mat-radio-group
+    [(ngModel)]="answers[currentQuestion._id]"
+    class="flex flex-col space-y-3 w-full"
+  >
+    <mat-radio-button
+      *ngFor="let ans of currentQuestion.answers"
+      [value]="ans.key"
+      [disabled]="submitted"
+      [ngClass]="{
+        'bg-blue-100 text-blue-700':
+          submitted && ans.key === currentQuestion.correct,
+        'bg-red-100 text-red-700':
+          submitted &&
+          ans.key === answers[currentQuestion._id] &&
+          ans.key !== currentQuestion.correct
+      }"
+      class="px-4 py-2 rounded-lg border border-gray-200 hover:bg-gray-50"
+    >
+      {{ ans.answer }}
+    </mat-radio-button>
+  </mat-radio-group>
+
+  <p
+    *ngIf="showCorrectAnswer()"
+    class="mt-3 text-red-600 font-semibold text-center"
+  >
+    Correct Answer: {{ showCorrectAnswer() }}
+  </p>
+</mat-dialog-content>
+
+<mat-dialog-actions align="center" class="flex justify-center gap-4 mt-4">
+  <button
+    mat-raised-button
+    color="accent"
+    class="px-6 py-2 rounded-lg font-medium"
+    (click)="prev()"
+    [disabled]="currentIndex === 0 || submitted"
+    *ngIf="!submitted"
+  >
+    <i class="fa-solid fa-arrow-left"></i>
+    Prev
+  </button>
+
+  <button
+    mat-raised-button
+    color="primary"
+    class="px-6 py-2 rounded-lg font-medium"
+    *ngIf="currentIndex < data.questions.length - 1 && !submitted"
+    (click)="next()"
+  >
+    <i class="fa-solid fa-arrow-right"></i>
+    Next
+  </button>
+
+  <button
+    mat-raised-button
+    color="success"
+    class="px-6 py-2 rounded-lg font-medium"
+    *ngIf="currentIndex === data.questions.length - 1 && !submitted"
+    (click)="submitExam()"
+  >
+    <i class="fa-solid fa-check"></i>
+    Submit
+  </button>
+
+  <button
+    mat-stroked-button
+    color="warn"
+    mat-dialog-close
+    class="px-6 py-2 rounded-lg font-medium"
+  >
+    <i class="fa-solid fa-xmark"></i>
+    Close
+  </button>
+</mat-dialog-actions>

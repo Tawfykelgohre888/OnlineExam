@@ -43,6 +43,5 @@ export const appConfig: ApplicationConfig = {
         provide: BASEURL,
         useValue: environment.BASE_URL,
     },
-    provideStore()
 ],
 };
