@@ -1,44 +1,33 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { ExamsService } from '../../services/exams.service';
 import { Exam } from '../../interface/exams';
-import { ButtonModule } from 'primeng/button';
-import { InputTextModule } from 'primeng/inputtext';
 import { QuestionService } from '../../services/question.service';
-import { Question } from '../../interface/question';
+import { Question, Answer } from '../../interface/question';
 import { CommonModule } from '@angular/common';
-import { DialogModule } from 'primeng/dialog';
-import { interval, Subscription } from 'rxjs';
-import { takeWhile } from 'rxjs/operators';
+import { MatDialog } from '@angular/material/dialog';
+import { ExamDialogComponent } from '../../../ui/dialog-content-example/dialog-content-example.component';
 
 @Component({
   selector: 'app-exams',
   standalone: true,
-  imports: [RouterLink, DialogModule, ButtonModule, InputTextModule, CommonModule],
+  imports: [
+    RouterLink,
+    CommonModule,
+  ],
   templateUrl: './exams.component.html',
   styleUrl: './exams.component.scss',
 })
-export class ExamsComponent implements OnInit, OnDestroy {
-  visible: boolean = false;          // Dialog الأسئلة والنتيجة (صفحتين)
-  showResult: boolean = false;       // Dialog عرض الإجابات الصحيحة/الخطأ
-
+export class ExamsComponent implements OnInit {
   examId!: string;
-  Quazes: Exam[] = [] as Exam[];
+  quizzes: Exam[] = [];
   IdSubject!: string;
-
   questions: Question[] = [];
-  answers: (string | null)[] = [];
+  currentIndex = 0;
+  answer: { [key: string]: string } = {};
+  duration!: number;
 
-  currentQuestionIndex: number = 0;
-
-  timeLeft: number = 0;
-  displayTime: string = '00:00';
-  private timerSub?: Subscription;
-
-  // النتائج
-  score: number = 0;
-  incorrect: number = 0;
-  percentage: number = 0;
+  readonly dialog = inject(MatDialog);
 
   constructor(
     private readonly activatedRoute: ActivatedRoute,
@@ -50,8 +39,42 @@ export class ExamsComponent implements OnInit, OnDestroy {
     this.getAllExam();
   }
 
-  ngOnDestroy(): void {
-    this.timerSub?.unsubscribe();
+  loadQuestions(id: string) {
+    this.questionService.getAllQuestion(id).subscribe({
+      next: (res) => {
+        this.questions = res.questions;
+        const exam = this.quizzes.find((q) => q._id === id);
+
+        this.dialog.open(ExamDialogComponent, {
+          width: '800px',
+          data: {
+            questions: this.questions,
+            duration: exam?.duration || 0,
+          },
+        });
+      },
+    });
+  }
+
+  getCurrentQuestions(): Question {
+    return this.questions[this.currentIndex];
+  }
+
+  selectAnswer(ans: Answer) {
+    const currentQ = this.getCurrentQuestions();
+    this.answer[currentQ._id] = ans.key;
+  }
+
+  nextQuestion() {
+    if (this.currentIndex < this.questions.length - 1) {
+      this.currentIndex++;
+    }
+  }
+
+  prevQuestion() {
+    if (this.currentIndex > 0) {
+      this.currentIndex--;
+    }
   }
 
   // Exams list
@@ -59,12 +82,9 @@ export class ExamsComponent implements OnInit, OnDestroy {
     this.examId = this.activatedRoute.snapshot.paramMap.get('id')!;
     this.examsService.getAllExamsBySubject(this.examId).subscribe({
       next: (res) => {
-        this.Quazes = res.exams;
+        this.quizzes = res.exams;
         this.IdSubject = res.exams[0]._id;
       },
     });
   }
-
-
-
 }
