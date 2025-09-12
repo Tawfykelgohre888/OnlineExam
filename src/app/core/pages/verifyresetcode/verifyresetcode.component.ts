@@ -6,7 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { AuthService } from '../../../../../projects/auth/src/public-api';
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { NavbarComponent } from "../../../layout/authlayout/navbar/navbar.component";
 import { FooterComponent } from "../../../layout/authlayout/footer/footer.component";
@@ -34,11 +34,10 @@ export class VerifyresetcodeComponent {
 
     this._authService.VERIFYRESETCODE(payload).subscribe({
       next: (res) => {
-        console.log(res);
         if (res.message === 'success') {
           this.toster.success(res.message);
         }
-        this.router.navigate(['/ChangePassword']);
+        this.router.navigate(['/RESETPASSWORD']);
       },
     });
   }

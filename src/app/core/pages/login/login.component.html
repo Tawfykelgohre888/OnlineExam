@@ -29,14 +29,15 @@
       <div class="relative">
         <input
           class="outline-none focus:ring-0 w-full border border-gray-300 rounded px-4 py-2"
-          type="password"
+          [type]="passwordVisible ? 'text' : 'password' "
           formControlName="password"
           placeholder="Password"
           id="password"
         />
-        <span class="absolute top-1/2 -translate-y-1/2 right-3">
+        <span class="absolute top-1/2 -translate-y-1/2 right-3 cursor-pointer ">
           <!-- SVG icon here -->
           <svg
+            (click)="togglePassword()"
             width="26"
             height="28"
             viewBox="0 0 26 28"
