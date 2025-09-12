@@ -17,7 +17,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 export class DashboardComponent implements OnInit {
   _sub = inject(SubjectService);
   subjects: Subject[] = [];
-  limit: number = 9;
+  limit: number = 12;
   ngOnInit(): void {
     initFlowbite();
     this.displaySubject();
