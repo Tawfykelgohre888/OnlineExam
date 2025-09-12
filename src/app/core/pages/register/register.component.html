@@ -1,182 +1,189 @@
 <div class="content flex flex-col items-center justify-center">
   <div class="header">
-    <app-navbar/>
+    <app-navbar />
   </div>
 
-  <div class="inputs flex flex-col items-center justify-center mt-15 p-5 text-center rounded bg-white shadow-md"
-    style="width: 410px; height: 490px;">
+  <div
+    class="inputs flex flex-col items-center justify-center mt-15 p-5 text-center rounded bg-white shadow-md"
+    style="width: 410px; height: 490px"
+  >
     <h6 class="mb-4 w-full text-left font-bold">Sign up</h6>
 
-    <form [formGroup]="registerForm" class="w-full flex flex-col gap-3" (ngSubmit)="submitRegisterForm()">
+    <form
+      [formGroup]="registerForm"
+      class="w-full flex flex-col gap-3"
+      (ngSubmit)="submitRegisterForm()"
+    >
       <div>
-        <input class="w-full outline-none focus:ring-0 border border-gray-300  rounded px-3 py-2" type="text"
-          placeholder="UserName" formControlName="username" id="UserName">
-        @if (registerForm.get('UserName')?.invalid && (registerForm.get('UserName')?.dirty ||registerForm.get("UserName")?.touched) ) {
+        <input
+          class="w-full outline-none focus:ring-0 border border-gray-300 rounded px-3 py-2"
+          type="text"
+          placeholder="UserName"
+          formControlName="username"
+          id="UserName"
+        />
+        @if (registerForm.get('UserName')?.invalid &&
+        (registerForm.get('UserName')?.dirty
+        ||registerForm.get("UserName")?.touched) ) {
         <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50">
           @if (registerForm.get('UserName')?.hasError('required')) {
-          <div>
-            userName is required.
-          </div>
-          }
-          @if (registerForm.get('UserName')?.hasError('maxLength')) {
-          <div>
-            Max Length 10 Character
-          </div>
-          }
-          @if (registerForm.get('UserName')?.hasError('minLength')) {
-          <div>
-            Min Length 4Character
-          </div>
+          <div>userName is required.</div>
+          } @if (registerForm.get('UserName')?.hasError('maxLength')) {
+          <div>Max Length 10 Character</div>
+          } @if (registerForm.get('UserName')?.hasError('minLength')) {
+          <div>Min Length 4Character</div>
           }
         </div>
         }
       </div>
       <div>
-        <input class="w-full outline-none focus:ring-0 border border-gray-300 rounded px-3 py-2" type="text"
-          placeholder="First Name" formControlName="firstName" id="FirstName">
-        @if (registerForm.get('firstName')?.invalid && (registerForm.get('firstName')?.dirty ||registerForm.get("firstName")?.touched) ) {
-        <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 ">
+        <input
+          class="w-full outline-none focus:ring-0 border border-gray-300 rounded px-3 py-2"
+          type="text"
+          placeholder="First Name"
+          formControlName="firstName"
+          id="FirstName"
+        />
+        @if (registerForm.get('firstName')?.invalid &&
+        (registerForm.get('firstName')?.dirty
+        ||registerForm.get("firstName")?.touched) ) {
+        <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50">
           @if (registerForm.get('firstName')?.hasError('required')) {
-          <div>
-            Name is required.
-          </div>
-          }
-          @if (registerForm.get('firstName')?.hasError('maxLength')) {
-          <div>
-            Max Length 10 Character
-          </div>
-          }
-          @if (registerForm.get('firstName')?.hasError('minLength')) {
-          <div>
-            Min Length 4Character
-          </div>
+          <div>Name is required.</div>
+          } @if (registerForm.get('firstName')?.hasError('maxLength')) {
+          <div>Max Length 10 Character</div>
+          } @if (registerForm.get('firstName')?.hasError('minLength')) {
+          <div>Min Length 4Character</div>
           }
         </div>
         }
       </div>
       <div>
-        <input class="w-full outline-none focus:ring-0 border border-gray-300 rounded px-3 py-2" type="text"
-          placeholder="Last Name" formControlName="lastName" id="LastName">
-        @if (registerForm.get('firstName')?.invalid && (registerForm.get('firstName')?.dirty ||
+        <input
+          class="w-full outline-none focus:ring-0 border border-gray-300 rounded px-3 py-2"
+          type="text"
+          placeholder="Last Name"
+          formControlName="lastName"
+          id="LastName"
+        />
+        @if (registerForm.get('firstName')?.invalid &&
+        (registerForm.get('firstName')?.dirty ||
         registerForm.get("lastName")?.touched) ) {
         <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50">
           @if (registerForm.get('lastName')?.hasError('required')) {
-          <div>
-            Name is required.
-          </div>
-          }
-          @if (registerForm.get('lastName')?.hasError('maxLength')) {
-          <div>
-            Max Length 10 Character
-          </div>
-          }
-          @if (registerForm.get('lastName')?.hasError('minLength')) {
-          <div>
-            Min Length 4Character
-          </div>
+          <div>Name is required.</div>
+          } @if (registerForm.get('lastName')?.hasError('maxLength')) {
+          <div>Max Length 10 Character</div>
+          } @if (registerForm.get('lastName')?.hasError('minLength')) {
+          <div>Min Length 4Character</div>
           }
         </div>
         }
       </div>
       <div>
-        <input class="w-full outline-none focus:ring-0 border border-gray-300  rounded px-3 py-2" type="email"
-          placeholder="Email" formControlName="email" id="email">
-        @if (registerForm.get('email')?.invalid && (registerForm.get('email')?.dirty ||
-        registerForm.get("email")?.touched) ) {
+        <input
+          class="w-full outline-none focus:ring-0 border border-gray-300 rounded px-3 py-2"
+          type="email"
+          placeholder="Email"
+          formControlName="email"
+          id="email"
+        />
+        @if (registerForm.get('email')?.invalid &&
+        (registerForm.get('email')?.dirty || registerForm.get("email")?.touched)
+        ) {
         <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50">
           @if (registerForm.get('email')?.hasError('required')) {
-          <div>
-            Name is required.
-          </div>
-          }
-          @if (registerForm.get('email')?.hasError('email')) {
-          <div>
-            Inter Email Valid
-          </div>
+          <div>Name is required.</div>
+          } @if (registerForm.get('email')?.hasError('email')) {
+          <div>Inter Email Valid</div>
           }
         </div>
         }
       </div>
       <div class="relative">
-        <input #passwordInput class="w-full outline-none focus:ring-0 border border-gray-300 rounded px-3 py-2"
-          type="password" placeholder="Password" formControlName="password" id="password">
-        @if (registerForm.get('password')?.invalid && (registerForm.get('password')?.dirty ||
-        registerForm.get("password")?.touched)) {
-        <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50">
-          @if (registerForm.get('password')?.hasError('required')) {
-          <div>
-            password is required.
-          </div>
-          }
-          @if (registerForm.get('password')?.hasError('pattern')) {
-          <div>
-            Inter password Valid
-          </div>
-          }
-        </div>
-        }
+        <input
+          #passwordInput
+          class="w-full outline-none focus:ring-0 border border-gray-300 rounded px-3 py-2"
+          [type]="passwordVisible ? 'text' : 'password'"
+          placeholder="Password"
+          formControlName="password"
+          id="password"
+        />
         <span class="absolute top-1/2 -translate-y-1/2 right-3 cursor-pointer">
           <!-- SVG Here -->
-          <svg width="26" height="28" viewBox="0 0 26 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg
+            (click)="togglePassword()"
+            width="26"
+            height="28"
+            viewBox="0 0 26 28"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
             <path
               d="M3.92538 16.1712C4.81259 11.7469 8.52144 8.60332 12.6934 8.60332C16.8641 8.60332 20.5729 11.7469 21.4614 16.1712C21.4966 16.3468 21.5975 16.5006 21.7419 16.5989C21.8864 16.6972 22.0625 16.7319 22.2315 16.6954C22.4006 16.6588 22.5488 16.554 22.6434 16.4041C22.7381 16.2541 22.7715 16.0712 22.7363 15.8956C21.7255 10.8634 17.4976 7.2524 12.6934 7.2524C7.8892 7.2524 3.6613 10.8634 2.65051 15.8956C2.61532 16.0712 2.64872 16.2541 2.74338 16.4041C2.83804 16.554 2.9862 16.6588 3.15525 16.6954C3.32431 16.7319 3.50043 16.6972 3.64485 16.5989C3.78928 16.5006 3.89019 16.3468 3.92538 16.1712ZM12.6804 11.3052C13.888 11.3052 15.0461 11.8033 15.8999 12.69C16.7538 13.5768 17.2335 14.7794 17.2335 16.0334C17.2335 17.2874 16.7538 18.4901 15.8999 19.3768C15.0461 20.2635 13.888 20.7617 12.6804 20.7617C11.4728 20.7617 10.3147 20.2635 9.46084 19.3768C8.60697 18.4901 8.12726 17.2874 8.12726 16.0334C8.12726 14.7794 8.60697 13.5768 9.46084 12.69C10.3147 11.8033 11.4728 11.3052 12.6804 11.3052Z"
-              fill="#949BA5" />
+              fill="#949BA5"
+            />
           </svg>
         </span>
       </div>
       <div class="relative">
-        <input class="w-full outline-none focus:ring-0 border border-gray-300  rounded px-3 py-2" type="password"
-          placeholder="Confirm Password" formControlName="rePassword" id="rePassword">
-        @if (registerForm.get('rePassword')?.invalid && (registerForm.get('rePassword')?.dirty ||
-        registerForm.get("pattern")?.touched) ) {
-        <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50">
-          @if (registerForm.get('rePassword')?.hasError('required')) {
-          <div>
-            Password is required.
-          </div>
-          }
-          @if (registerForm.get('rePassword')?.hasError('pattern')) {
-          <div>
-            Inter Password Valid
-          </div>
-          }
-        </div>
-        }
-        <span class="absolute top-1/2 -translate-y-1/2 right-3 cursor-pointer">
+        <input
+          class="w-full outline-none focus:ring-0 border border-gray-300 rounded px-3 py-2"
+          [type]="rePasswordVisible ? 'text' : 'password'"
+          placeholder="Confirm Password"
+          formControlName="rePassword"
+          id="rePassword"
+        />
+        <span class="absolute top-1/2 -translate-y-1/2 right-3 cursor-pointer ">
           <!-- SVG Here -->
-          <svg width="26" height="28" viewBox="0 0 26 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg
+          (click)="toggleRePassword()"
+            width="26"
+            height="28"
+            viewBox="0 0 26 28"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
             <path
               d="M3.92538 16.1712C4.81259 11.7469 8.52144 8.60332 12.6934 8.60332C16.8641 8.60332 20.5729 11.7469 21.4614 16.1712C21.4966 16.3468 21.5975 16.5006 21.7419 16.5989C21.8864 16.6972 22.0625 16.7319 22.2315 16.6954C22.4006 16.6588 22.5488 16.554 22.6434 16.4041C22.7381 16.2541 22.7715 16.0712 22.7363 15.8956C21.7255 10.8634 17.4976 7.2524 12.6934 7.2524C7.8892 7.2524 3.6613 10.8634 2.65051 15.8956C2.61532 16.0712 2.64872 16.2541 2.74338 16.4041C2.83804 16.554 2.9862 16.6588 3.15525 16.6954C3.32431 16.7319 3.50043 16.6972 3.64485 16.5989C3.78928 16.5006 3.89019 16.3468 3.92538 16.1712ZM12.6804 11.3052C13.888 11.3052 15.0461 11.8033 15.8999 12.69C16.7538 13.5768 17.2335 14.7794 17.2335 16.0334C17.2335 17.2874 16.7538 18.4901 15.8999 19.3768C15.0461 20.2635 13.888 20.7617 12.6804 20.7617C11.4728 20.7617 10.3147 20.2635 9.46084 19.3768C8.60697 18.4901 8.12726 17.2874 8.12726 16.0334C8.12726 14.7794 8.60697 13.5768 9.46084 12.69C10.3147 11.8033 11.4728 11.3052 12.6804 11.3052Z"
-              fill="#949BA5" />
+              fill="#949BA5"
+            />
           </svg>
         </span>
       </div>
       <div>
-        <input class="w-full outline-none focus:ring-0 border border-gray-300  rounded px-3 py-2" type="tel"
-          placeholder="Phone" formControlName="phone" id="phone">
-        @if (registerForm.get('phone')?.invalid && (registerForm.get('phone')?.dirty ||
+        <input
+          class="w-full outline-none focus:ring-0 border border-gray-300 rounded px-3 py-2"
+          type="tel"
+          placeholder="Phone"
+          formControlName="phone"
+          id="phone"
+        />
+        @if (registerForm.get('phone')?.invalid &&
+        (registerForm.get('phone')?.dirty ||
         registerForm.get("pattern")?.touched) ) {
         <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50">
           @if (registerForm.get('phone')?.hasError('required')) {
-          <div>
-            Phone is required.
-          </div>
-          }
-          @if (registerForm.get('phone')?.hasError('pattern')) {
-          <div>
-            Inter Phone Valid
-          </div>
+          <div>Phone is required.</div>
+          } @if (registerForm.get('phone')?.hasError('pattern')) {
+          <div>Inter Phone Valid</div>
           }
         </div>
         }
       </div>
       <div class="text-sm text-gray-500">
-        <a class="no-underline text-black " routerLink="/login">Already have an account? Login</a>
+        <a class="no-underline text-black" routerLink="/login"
+          >Already have an account? Login</a
+        >
       </div>
-      <button  type="submit" class="bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition">Create
-        Account</button>
+      <button
+        type="submit"
+        class="bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
+      >
+        Create Account
+      </button>
     </form>
 
-    <app-footer/>
+    <app-footer />
   </div>
 </div>

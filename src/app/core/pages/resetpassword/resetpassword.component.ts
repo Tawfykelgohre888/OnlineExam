@@ -1,22 +1,23 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { NavbarComponent } from "../../../layout/authlayout/navbar/navbar.component";
+import { Router, RouterLink } from '@angular/router';
+import { NavbarComponent } from '../../../layout/authlayout/navbar/navbar.component';
+import { FooterComponent } from '../../../layout/authlayout/footer/footer.component';
 
 @Component({
   selector: 'app-resetpassword',
-  imports: [NavbarComponent],
+  imports: [NavbarComponent, FooterComponent],
   templateUrl: './resetpassword.component.html',
-  styleUrl: './resetpassword.component.scss'
+  styleUrl: './resetpassword.component.scss',
 })
 export class RESETPASSWORDComponent {
+  passwordVisible: boolean = false;
+  rePasswordVisible: boolean = false;
 
-  constructor(private router: Router) {}
-
-  goToRegister():void{
-    this.router.navigate(['/register'])
-  }
-  goToLogin():void{
-    this.router.navigate(['/login'])
+  togglePassword() {
+    this.passwordVisible = !this.passwordVisible;
   }
 
+  toggleRePassword() {
+    this.rePasswordVisible = !this.rePasswordVisible;
+  }
 }
