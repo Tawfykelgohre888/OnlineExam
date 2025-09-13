@@ -21,7 +21,8 @@ import { FooterComponent } from "../../../layout/authlayout/footer/footer.compon
 export class RegisterComponent {
   constructor(private toster: ToastrService) {}
   _authService = inject(AuthService);
-
+  passwordVisible:boolean = false;
+  rePasswordVisible:boolean = false;
   registerForm = new FormGroup({
     username: new FormControl('', [
       Validators.maxLength(7),
@@ -64,4 +65,14 @@ export class RegisterComponent {
       this.registerForm.markAllAsTouched();
     }
   }
+
+  togglePassword(){
+    this.passwordVisible = !this.passwordVisible;
+  }
+
+  toggleRePassword(){
+    this.rePasswordVisible = ! this.rePasswordVisible;
+  }
+
 }
+

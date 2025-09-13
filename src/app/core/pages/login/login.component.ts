@@ -22,7 +22,7 @@ export class LoginComponent {
   constructor(private router: Router, private toster: ToastrService) {}
 
   _authService = inject(AuthService);
-
+  passwordVisible:boolean = false
   loginForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [
@@ -42,5 +42,10 @@ export class LoginComponent {
         this.toster.success(res.message);
       },
     });
+  }
+
+
+  togglePassword():void{
+    this.passwordVisible = ! this.passwordVisible
   }
 }
