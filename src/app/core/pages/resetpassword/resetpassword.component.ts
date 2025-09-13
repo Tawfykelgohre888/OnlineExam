@@ -1,11 +1,7 @@
 import { Component } from '@angular/core';
 import { NavbarComponent } from '../../../layout/authlayout/navbar/navbar.component';
 import { FooterComponent } from '../../../layout/authlayout/footer/footer.component';
-import {
-  FormControl,
-  FormGroup,
-  FormsModule,
-} from '@angular/forms';
+import { FormControl, FormGroup, FormsModule } from '@angular/forms';
 import {
   required,
   storePasswordValidator,
