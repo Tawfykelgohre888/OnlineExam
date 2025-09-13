@@ -3,14 +3,17 @@ import {
   FormControl,
   FormGroup,
   ReactiveFormsModule,
-  Validators,
 } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../../../projects/auth/src/lib/auth.service';
 import { ToastrService } from 'ngx-toastr';
-import { NavbarComponent } from "../../../layout/authlayout/navbar/navbar.component";
-import { FooterComponent } from "../../../layout/authlayout/footer/footer.component";
-
+import { NavbarComponent } from '../../../layout/authlayout/navbar/navbar.component';
+import { FooterComponent } from '../../../layout/authlayout/footer/footer.component';
+import {
+  email,
+  required,
+  storePasswordValidator,
+} from '../../../shared/validators/validators';
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -22,15 +25,10 @@ export class LoginComponent {
   constructor(private router: Router, private toster: ToastrService) {}
 
   _authService = inject(AuthService);
-  passwordVisible:boolean = false
+  passwordVisible: boolean = false;
   loginForm = new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [
-      Validators.required,
-      Validators.pattern(
-        /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
-      ),
-    ]),
+    email: new FormControl('', [required, email]),
+    password: new FormControl('', [required, storePasswordValidator]),
   });
 
   // start Logic Login
@@ -44,8 +42,7 @@ export class LoginComponent {
     });
   }
 
-
-  togglePassword():void{
-    this.passwordVisible = ! this.passwordVisible
+  togglePassword(): void {
+    this.passwordVisible = !this.passwordVisible;
   }
 }

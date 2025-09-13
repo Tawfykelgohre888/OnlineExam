@@ -8,8 +8,9 @@ import {
 import { AuthService } from '../../../../../projects/auth/src/public-api';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { NavbarComponent } from "../../../layout/authlayout/navbar/navbar.component";
-import { FooterComponent } from "../../../layout/authlayout/footer/footer.component";
+import { NavbarComponent } from '../../../layout/authlayout/navbar/navbar.component';
+import { FooterComponent } from '../../../layout/authlayout/footer/footer.component';
+import { required } from '../../../shared/validators/validators';
 
 @Component({
   selector: 'app-verifyresetcode',
@@ -24,7 +25,7 @@ export class VerifyresetcodeComponent {
   _authService = inject(AuthService);
 
   verifyForm = new FormGroup({
-    code: new FormControl('', Validators.required),
+    code: new FormControl('',required),
   });
 
   verifySubmit(): void {
