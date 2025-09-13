@@ -4,12 +4,19 @@ import {
   FormControl,
   FormGroup,
   ReactiveFormsModule,
-  Validators,
 } from '@angular/forms';
 import { AuthService } from '../../../../../projects/auth/src/public-api';
 import { ToastrService } from 'ngx-toastr';
-import { NavbarComponent } from "../../../layout/authlayout/navbar/navbar.component";
-import { FooterComponent } from "../../../layout/authlayout/footer/footer.component";
+import { NavbarComponent } from '../../../layout/authlayout/navbar/navbar.component';
+import { FooterComponent } from '../../../layout/authlayout/footer/footer.component';
+import {
+  email,
+  maxLength,
+  minLength,
+  phoneNumberValidator,
+  required,
+  storePasswordValidator,
+} from '../../../shared/validators/validators';
 
 @Component({
   selector: 'app-register',
@@ -21,37 +28,16 @@ import { FooterComponent } from "../../../layout/authlayout/footer/footer.compon
 export class RegisterComponent {
   constructor(private toster: ToastrService) {}
   _authService = inject(AuthService);
-  passwordVisible:boolean = false;
-  rePasswordVisible:boolean = false;
+  passwordVisible: boolean = false;
+  rePasswordVisible: boolean = false;
   registerForm = new FormGroup({
-    username: new FormControl('', [
-      Validators.maxLength(7),
-      Validators.minLength(4),
-      Validators.required,
-    ]),
-    firstName: new FormControl('', [
-      Validators.maxLength(10),
-      Validators.minLength(4),
-      Validators.required,
-    ]),
-    lastName: new FormControl('', [
-      Validators.maxLength(10),
-      Validators.minLength(4),
-      Validators.required,
-    ]),
-    email: new FormControl('', [Validators.email, Validators.required]),
-    password: new FormControl('', [
-      Validators.pattern('^(?=.*[A-Za-z])(?=.*d)[A-Za-zd]{6,}$'),
-      Validators.required,
-    ]),
-    rePassword: new FormControl('', [
-      Validators.pattern('^(?=.*[A-Za-z])(?=.*d)[A-Za-zd]{6,}$'),
-      Validators.required,
-    ]),
-    phone: new FormControl('', [
-      Validators.pattern('^01[0-2,5][0-9]{8}$'),
-      Validators.required,
-    ]),
+    username: new FormControl('', [maxLength, minLength, required]),
+    firstName: new FormControl('', [maxLength, minLength, required]),
+    lastName: new FormControl('', [maxLength, minLength, required]),
+    email: new FormControl('', [email, required]),
+    password: new FormControl('', [storePasswordValidator, required]),
+    rePassword: new FormControl('', [storePasswordValidator, required]),
+    phone: new FormControl('', [phoneNumberValidator, required]),
   });
 
   submitRegisterForm() {
@@ -66,13 +52,11 @@ export class RegisterComponent {
     }
   }
 
-  togglePassword(){
+  togglePassword() {
     this.passwordVisible = !this.passwordVisible;
   }
 
-  toggleRePassword(){
-    this.rePasswordVisible = ! this.rePasswordVisible;
+  toggleRePassword() {
+    this.rePasswordVisible = !this.rePasswordVisible;
   }
-
 }
-

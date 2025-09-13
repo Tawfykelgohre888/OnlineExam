@@ -1,15 +1,11 @@
 import { Component, inject } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../../../../../projects/auth/src/public-api';
-import {
-  FormControl,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
-import { NavbarComponent } from "../../../layout/authlayout/navbar/navbar.component";
-import { FooterComponent } from "../../../layout/authlayout/footer/footer.component";
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+import { NavbarComponent } from '../../../layout/authlayout/navbar/navbar.component';
+import { FooterComponent } from '../../../layout/authlayout/footer/footer.component';
+import { email, required } from '../../../shared/validators/validators';
 
 @Component({
   selector: 'app-forgetpassword',
@@ -22,13 +18,12 @@ export class ForgetpasswordComponent {
   _authService = inject(AuthService);
 
   emailForm = new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.email]),
+    email: new FormControl('', [required, email]),
   });
 
   FORGETPASSWORD(): void {
     this._authService.FORGETPASSWORD(this.emailForm.value).subscribe({
       next: (res) => {
-        console.log(res);
         this.toster.success(res.message);
         this.router.navigate(['/verifyresetcode']);
       },
