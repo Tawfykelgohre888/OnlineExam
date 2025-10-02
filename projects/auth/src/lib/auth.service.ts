@@ -8,9 +8,14 @@ import { BASEURL } from './base-url';
 import { login } from './interfaces/loginInterface';
 import { CHANGEPASSWORD } from './interfaces/changePassword';
 import { forgetPassword } from './interfaces/forgetPassword';
-import { restCode } from './interfaces/resteCode';
+import { response, restCode } from './interfaces/resteCode';
 import { RESETPASSWORD } from './interfaces/restePassword';
 import { SIGNUP } from './interfaces/registerInterfae';
+import { general } from './interfaces/genralAdptor';
+import { LoginRegisterResponse } from './interfaces/backAdapt';
+import { ChangePasswordResponse } from './interfaces/ChangePasswordResponse';
+import { forgetPasswordResponse } from './interfaces/forgetPasswordResponse';
+import { verifyResetCodeResponse } from './interfaces/verifyResetCodeResponse';
 
 @Injectable({
   providedIn: 'root',
@@ -21,56 +26,72 @@ export class AuthService implements autApi {
 
   _authApiAdaptorService = inject(AuthApiAdaptorService);
 
-  LOGIN(data: login): Observable<login> {
+  LOGIN(data: login): Observable<general> {
     return this._httpClient
-      .post<login>(this._baseUrl + authEndPoint.SIGNIN, data)
+      .post<LoginRegisterResponse>(this._baseUrl + authEndPoint.SIGNIN, data)
       .pipe(
         map((res) => this._authApiAdaptorService.adapt(res)),
         catchError((err) => of(err))
       );
   }
 
-  REGISTER(data: SIGNUP): Observable<SIGNUP> {
+  REGISTER(data: SIGNUP): Observable<general> {
     return this._httpClient
-      .post(this._baseUrl + authEndPoint.SIGNUP, data)
+      .post<LoginRegisterResponse>(this._baseUrl + authEndPoint.SIGNUP, data)
       .pipe(
         map((res) => this._authApiAdaptorService.adapt(res)),
         catchError((err) => of(err))
       );
   }
 
-  CHANGEPASSWORD(data: CHANGEPASSWORD): Observable<CHANGEPASSWORD> {
+  CHANGEPASSWORD(data: CHANGEPASSWORD): Observable<ChangePasswordResponse> {
     return this._httpClient
-      .patch(this._baseUrl + authEndPoint.CHANGEPASSWORD, data)
+      .patch<ChangePasswordResponse>(
+        this._baseUrl + authEndPoint.CHANGEPASSWORD,
+        data
+      )
       .pipe(
-        map((res) => this._authApiAdaptorService.adapt(res)),
+        map((res: ChangePasswordResponse) =>
+          this._authApiAdaptorService.adaptorChangePasowrd(res)
+        ),
         catchError((err) => of(err))
       );
   }
 
-  FORGETPASSWORD(data: forgetPassword): Observable<forgetPassword> {
+  FORGETPASSWORD(data: forgetPassword): Observable<forgetPasswordResponse> {
     return this._httpClient
-      .post(this._baseUrl + authEndPoint.FORGETPASSWORD, data)
+      .post<forgetPasswordResponse>(
+        this._baseUrl + authEndPoint.FORGETPASSWORD,
+        data
+      )
       .pipe(
-        map((res) => this._authApiAdaptorService.adapt(res)),
+        map((res: forgetPasswordResponse) =>
+          this._authApiAdaptorService.adaptSendOtp(res)
+        ),
         catchError((err) => of(err))
       );
   }
 
-  VERIFYRESETCODE(data: restCode): Observable<restCode> {
+  VERIFYRESETCODE(data: restCode): Observable<verifyResetCodeResponse> {
     return this._httpClient
-      .post(this._baseUrl + authEndPoint.VERIFYRESETCODE, data)
+      .post<verifyResetCodeResponse>(
+        this._baseUrl + authEndPoint.VERIFYRESETCODE,
+        data
+      )
       .pipe(
-        map((res) => this._authApiAdaptorService.adapt(res)),
+        map((res) => this._authApiAdaptorService.adaptverifyResetCode(res)),
         catchError((err) => of(err))
       );
   }
 
-  RESETPASSWORD(data: RESETPASSWORD): Observable<RESETPASSWORD> {
+  RESETPASSWORD(data: RESETPASSWORD): Observable<verifyResetCodeResponse> {
     return this._httpClient
-      .put(this._baseUrl + authEndPoint.RESETPASSWORD, data)
+      .put<verifyResetCodeResponse>(
+        this._baseUrl + authEndPoint.RESETPASSWORD,
+        data
+      )
       .pipe(
-        map((res) => this._authApiAdaptorService.adapt(res)),
+        map((res) => this._authApiAdaptorService.adaptverifyResetCode(res)),
         catchError((err) => of(err))
       );
   }

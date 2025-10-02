@@ -5,5 +5,5 @@ export interface SIGNUP {
   email: string;
   password: string;
   rePassword: string;
-  phone: number;
+  phone?: number;
 }

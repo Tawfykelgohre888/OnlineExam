@@ -1,9 +1,5 @@
 import { Component, inject } from '@angular/core';
-import {
-  FormControl,
-  FormGroup,
-  ReactiveFormsModule,
-} from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../../../projects/auth/src/lib/auth.service';
 import { ToastrService } from 'ngx-toastr';
@@ -33,13 +29,21 @@ export class LoginComponent {
 
   // start Logic Login
   LoginPOst() {
-    this._authService.LOGIN(this.loginForm.value).subscribe({
-      next: (res) => {
-        localStorage.setItem('userToken', res.token);
-        this.router.navigate(['/mainLayout/dashboard']);
-        this.toster.success(res.message);
-      },
-    });
+    const payload = {
+      email: this.loginForm.value.email!,
+      password: this.loginForm.value.password!,
+    };
+    if (this.loginForm.valid) {
+      this._authService.LOGIN(payload).subscribe({
+        next: (res) => {
+          localStorage.setItem('userToken', res.token);
+          this.router.navigate(['/mainLayout/dashboard']);
+          this.toster.success(res.message);
+        },
+      });
+    } else {
+      this.loginForm.markAllAsTouched();
+    }
   }
 
   togglePassword(): void {

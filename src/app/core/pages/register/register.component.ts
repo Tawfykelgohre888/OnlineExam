@@ -1,10 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import {
-  FormControl,
-  FormGroup,
-  ReactiveFormsModule,
-} from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../../../../../projects/auth/src/public-api';
 import { ToastrService } from 'ngx-toastr';
 import { NavbarComponent } from '../../../layout/authlayout/navbar/navbar.component';
@@ -17,6 +13,7 @@ import {
   required,
   storePasswordValidator,
 } from '../../../shared/validators/validators';
+import { SIGNUP } from '../../../../../projects/auth/src/lib/interfaces/registerInterfae';
 
 @Component({
   selector: 'app-register',
@@ -37,14 +34,27 @@ export class RegisterComponent {
     email: new FormControl('', [email, required]),
     password: new FormControl('', [storePasswordValidator, required]),
     rePassword: new FormControl('', [storePasswordValidator, required]),
-    phone: new FormControl('', [phoneNumberValidator, required]),
+    phone: new FormControl(null, [phoneNumberValidator, required]),
   });
 
   submitRegisterForm() {
+    const payload: SIGNUP = {
+      username: this.registerForm.value.username!,
+      firstName: this.registerForm.value.firstName!,
+      lastName: this.registerForm.value.lastName!,
+      email: this.registerForm.value.email!,
+      password: this.registerForm.value.password!,
+      rePassword: this.registerForm.value.rePassword!,
+      phone: this.registerForm.value.phone!,
+    };
+
     if (this.registerForm.valid) {
-      this._authService.REGISTER(this.registerForm.value).subscribe({
+      this._authService.REGISTER(payload).subscribe({
         next: (res) => {
           this.toster.success(res.message, 'Register');
+        },
+        error: (err) => {
+          this.toster.error(err.error.message || 'Something went wrong');
         },
       });
     } else {

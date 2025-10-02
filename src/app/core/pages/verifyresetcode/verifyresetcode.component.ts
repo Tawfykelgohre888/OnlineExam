@@ -3,7 +3,6 @@ import {
   FormControl,
   FormGroup,
   ReactiveFormsModule,
-  Validators,
 } from '@angular/forms';
 import { AuthService } from '../../../../../projects/auth/src/public-api';
 import { Router } from '@angular/router';
@@ -25,21 +24,22 @@ export class VerifyresetcodeComponent {
   _authService = inject(AuthService);
 
   verifyForm = new FormGroup({
-    code: new FormControl('',required),
+    code: new FormControl('', required),
   });
 
   verifySubmit(): void {
-    const payload = {
-      resetCode: this.verifyForm.value.code,
-    };
-
-    this._authService.VERIFYRESETCODE(payload).subscribe({
-      next: (res) => {
-        if (res.message === 'success') {
-          this.toster.success(res.message);
-        }
-        this.router.navigate(['/RESETPASSWORD']);
-      },
-    });
+    const payload = { resetCode: this.verifyForm.value.code! };
+    if (this.verifyForm.valid) {
+      this._authService.VERIFYRESETCODE(payload).subscribe({
+        next: (res) => {
+          if (res.message === 'success') {
+            this.toster.success(res.message);
+          }
+          this.router.navigate(['/RESETPASSWORD']);
+        },
+      });
+    } else {
+      this.verifyForm.markAllAsTouched();
+    }
   }
 }
