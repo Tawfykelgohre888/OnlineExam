@@ -22,11 +22,18 @@ export class ForgetpasswordComponent {
   });
 
   FORGETPASSWORD(): void {
-    this._authService.FORGETPASSWORD(this.emailForm.value).subscribe({
-      next: (res) => {
-        this.toster.success(res.message);
-        this.router.navigate(['/verifyresetcode']);
-      },
-    });
+    const payload = {
+      email: this.emailForm.value.email!,
+    };
+    if (this.emailForm.valid) {
+      this._authService.FORGETPASSWORD(payload).subscribe({
+        next: (res) => {
+          this.toster.success(res.message);
+          this.router.navigate(['/verifyresetcode']);
+        },
+      });
+    } else {
+      this.emailForm.markAllAsTouched();
+    }
   }
 }
