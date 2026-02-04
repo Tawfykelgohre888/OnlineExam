@@ -28,31 +28,38 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { lodingInterceptor } from './core/Interceptor/loding/loding.interceptor';
 import { errorInterceptor } from './core/Interceptor/error/error.interceptor';
 import { provideStore } from '@ngrx/store';
+import { modalReducer } from './store/modal/modal.reducer';
+import { provideEffects } from '@ngrx/effects';
+import { questionsEffects } from './store/questions/questions.effect';
+import { modalEffects } from './store/modal/modal.effects';
+import { questionReducer } from './store/questions/qustions.reducer';
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideClientHydration(withEventReplay()),
-    provideHttpClient(
-      withFetch(),
-      withInterceptors([
+    provideHttpClient(withFetch(), withInterceptors([
         headersInterceptor,
         lodingInterceptor,
         errorInterceptor,
-      ])
-    ),
+    ])),
     provideAnimations(),
     provideAnimationsAsync(),
     provideToastr(),
     importProvidersFrom(NgxSpinnerModule),
+    provideStore({
+        modal: modalReducer,
+        questions:questionReducer
+    }),
     providePrimeNG({
-      theme: {
-        preset: Aura,
-      },
+        theme: {
+            preset: Aura,
+        },
     }),
     {
-      provide: BASEURL,
-      useValue: environment.BASE_URL,
+        provide: BASEURL,
+        useValue: environment.BASE_URL,
     },
-  ],
+    provideEffects(questionsEffects,modalEffects)
+],
 };

@@ -1,20 +1,24 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Question } from '../interface/question';
 import { environment } from '../../shared/environment/environment';
-
+import { questionResponse } from '../interface/question';
+import * as questionByExam from '../../shared/endpoint';
+import { map } from 'rxjs';
+import { MainAdapter } from '../adaptor/mainAdapt';
 @Injectable({
   providedIn: 'root',
 })
 export class QuestionService {
-  constructor(private readonly httpClient: HttpClient) {}
+  constructor(
+    private readonly httpClient: HttpClient,
+    private readonly adaptor: MainAdapter
+  ) {}
 
-  getAllQuestion(
-    id: string
-  ): Observable<{ message: string; questions: Question[] }> {
-    return this.httpClient.get<{ message: string; questions: Question[] }>(
-      `${environment.BASE_URL}/api/v1/questions?exam=${id}`
-    );
+  getQuestionByExamId(examId: string) {
+    return this.httpClient
+      .get<questionResponse>(
+        `${environment.BASE_URL}` + questionByExam.question.questionByExam + examId
+      )
+      .pipe(map((res: questionResponse) => this.adaptor.questionAdaptor(res)));
   }
 }

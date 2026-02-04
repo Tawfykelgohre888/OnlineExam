@@ -5,7 +5,6 @@ import { initFlowbite } from 'flowbite';
 import { SubjectService } from '../../services/subject.service';
 import { Subject } from '../../interface/get-subject';
 import { RouterLink } from '@angular/router';
-import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-dashboard',
@@ -34,6 +33,5 @@ export class DashboardComponent implements OnInit {
   viewAll() {
     this.limit = this.subjects.length;
     this.subjects = this.subjects.slice(0,this.limit)
-    console.log('limit updated:',);
   }
 }
