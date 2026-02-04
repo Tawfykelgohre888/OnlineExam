@@ -1,4 +1,3 @@
-
 export interface Question {
   _id: string;
   question: string;
@@ -30,4 +29,18 @@ export interface Subject {
 export interface Answer {
   answer: string;
   key: string;
+}
+
+export interface questionResponse {
+  message: string;
+  questions: Question[];
+}
+
+export interface questionAdapter {
+  _id: string;
+  question: string;
+  index: number;
+  answers: Answer[];
+  correct: string;
+  selectedAnswer?: string;
 }

@@ -15,36 +15,36 @@
 
     <!-- Responsive Grid -->
     <div
-      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 h-[900px] p-10 gap-10"
     >
       @for (subject of subjects.slice(0, limit); track subject._id) {
-      <div
-        class="group relative w-full border border-gray-200 rounded-lg shadow overflow-hidden hover:shadow-lg transition-all duration-300"
-      >
-        <!-- Image -->
-        <img
-          class="w-full h-48 object-cover"
-          [src]="subject.icon"
-          alt="{{ subject.name }}"
-          [routerLink]="['/mainLayout/exams', subject._id]"
-        />
-
-        <!-- Overlay -->
         <div
-          class="absolute inset-0 flex justify-center items-center pointer-events-none"
+          class="group relative w-full border border-gray-200 rounded-lg shadow overflow-hidden hover:shadow-lg transition-all duration-300"
         >
+          <!-- Image -->
+          <img
+            class="w-full h-48 object-cover"
+            [src]="subject.icon"
+            alt="{{ subject.name }}"
+            [routerLink]="['/mainLayout/exams', subject._id]"
+          />
+
+          <!-- Overlay -->
           <div
-            class="bg-[#1935CA]/80 text-center px-4 py-3 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-auto"
+            class="absolute inset-0 flex justify-center items-center pointer-events-none"
           >
-            <p class="text-white text-lg font-bold">
-              {{ subject.name }}
-            </p>
-            <p class="text-white text-sm">
-              Voluptatem aut ut dignissimos blanditiis
-            </p>
+            <div
+              class="bg-[#1935CA]/80 text-center px-4 py-3 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-auto"
+            >
+              <p class="text-white text-lg font-bold">
+                {{ subject.name }}
+              </p>
+              <p class="text-white text-sm">
+                Voluptatem aut ut dignissimos blanditiis
+              </p>
+            </div>
           </div>
         </div>
-      </div>
       }
     </div>
   </div>
