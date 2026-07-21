@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../../../../../projects/auth/src/public-api';
 import { ToastrService } from 'ngx-toastr';
@@ -23,7 +23,10 @@ import { SIGNUP } from '../../../../../projects/auth/src/lib/interfaces/register
   styleUrl: './register.component.scss',
 })
 export class RegisterComponent {
-  constructor(private toster: ToastrService) {}
+  constructor(
+    private toster: ToastrService,
+    private readonly router: Router,
+  ) {}
   _authService = inject(AuthService);
   passwordVisible: boolean = false;
   rePasswordVisible: boolean = false;
@@ -47,11 +50,11 @@ export class RegisterComponent {
       rePassword: this.registerForm.value.rePassword!,
       phone: this.registerForm.value.phone!,
     };
-
     if (this.registerForm.valid) {
       this._authService.REGISTER(payload).subscribe({
         next: (res) => {
           this.toster.success(res.message, 'Register');
+          this.router.navigate(['/login']);
         },
         error: (err) => {
           this.toster.error(err.error.message || 'Something went wrong');

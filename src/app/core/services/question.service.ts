@@ -11,13 +11,15 @@ import { MainAdapter } from '../adaptor/mainAdapt';
 export class QuestionService {
   constructor(
     private readonly httpClient: HttpClient,
-    private readonly adaptor: MainAdapter
+    private readonly adaptor: MainAdapter,
   ) {}
 
   getQuestionByExamId(examId: string) {
     return this.httpClient
       .get<questionResponse>(
-        `${environment.BASE_URL}` + questionByExam.question.questionByExam + examId
+        `${environment.BASE_URL}` +
+          questionByExam.question.questionByExam +
+          examId,
       )
       .pipe(map((res: questionResponse) => this.adaptor.questionAdaptor(res)));
   }

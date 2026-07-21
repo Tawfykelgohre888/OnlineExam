@@ -7,15 +7,15 @@ import { mainGuard } from './core/guards/main.guard';
 export const routes: Routes = [
   {
     path: '',
-    component: AuthlayoutComponent ,
-    canActivate:[mainGuard],
+    component: AuthlayoutComponent,
+    canActivate: [mainGuard],
     children: [
       { path: '', redirectTo: 'login', pathMatch: 'full' },
       {
         path: 'login',
         loadComponent: () =>
           import('./core/pages/login/login.component').then(
-            (c) => c.LoginComponent
+            (c) => c.LoginComponent,
           ),
         title: 'login',
       },
@@ -23,7 +23,7 @@ export const routes: Routes = [
         path: 'register',
         loadComponent: () =>
           import('./core/pages/register/register.component').then(
-            (c) => c.RegisterComponent
+            (c) => c.RegisterComponent,
           ),
         title: 'register',
       },
@@ -31,7 +31,7 @@ export const routes: Routes = [
         path: 'forgetPassword',
         loadComponent: () =>
           import('./core/pages/forgetpassword/forgetpassword.component').then(
-            (c) => c.ForgetpasswordComponent
+            (c) => c.ForgetpasswordComponent,
           ),
         title: 'FORGETPASSWORD',
       },
@@ -39,7 +39,7 @@ export const routes: Routes = [
         path: 'verifyresetcode',
         loadComponent: () =>
           import('./core/pages/verifyresetcode/verifyresetcode.component').then(
-            (c) => c.VerifyresetcodeComponent
+            (c) => c.VerifyresetcodeComponent,
           ),
         title: 'VERIFYRESETCODE',
       },
@@ -47,7 +47,7 @@ export const routes: Routes = [
         path: 'RESETPASSWORD',
         loadComponent: () =>
           import('./core/pages/resetpassword/resetpassword.component').then(
-            (c) => c.RESETPASSWORDComponent
+            (c) => c.RESETPASSWORDComponent,
           ),
         title: 'RESETPASSWORD',
       },
@@ -57,25 +57,25 @@ export const routes: Routes = [
   {
     path: 'mainLayout',
     component: MainLayoutComponent,
-    canActivate:[authGuard],
+    canActivate: [authGuard],
     children: [
-      {path:'', redirectTo:'dashboard',pathMatch:'full' },
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       {
         path: 'dashboard',
         loadComponent: () =>
           import('./core/pages/dashboard/dashboard.component').then(
-            (c) => c.DashboardComponent
+            (c) => c.DashboardComponent,
           ),
         title: 'dashboard',
       },
       {
-        path:"exams/:id",
-        loadComponent:()=>
+        path: 'exams/:id',
+        loadComponent: () =>
           import('./core/pages/exams/exams.component').then(
-            (c)=> c.ExamsComponent
+            (c) => c.ExamsComponent,
           ),
-          title:'exams'
-      }
+        title: 'exams',
+      },
     ],
   },
 ];

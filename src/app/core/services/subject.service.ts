@@ -12,7 +12,7 @@ export class SubjectService {
 
   getSubject(): Observable<GetSubjectsResponse> {
     return this.http.get<GetSubjectsResponse>(
-      `${environment.BASE_URL}/api/v1/subjects`
+      `${environment.BASE_URL}/api/v1/subjects`,
     );
   }
 }

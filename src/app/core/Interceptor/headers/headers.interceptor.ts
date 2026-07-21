@@ -8,11 +8,11 @@ export const headersInterceptor: HttpInterceptorFn = (req, next) => {
   if (isPlatformBrowser(PLATFORM)) {
     const token = localStorage.getItem('userToken');
 
-    if (token) { // ✅ اتأكد إن في توكن
+    if (token) {
       req = req.clone({
         setHeaders: {
-          token: token
-        }
+          token: token,
+        },
       });
     }
   }

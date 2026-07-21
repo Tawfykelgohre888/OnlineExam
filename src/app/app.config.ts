@@ -33,33 +33,47 @@ import { provideEffects } from '@ngrx/effects';
 import { questionsEffects } from './store/questions/questions.effect';
 import { modalEffects } from './store/modal/modal.effects';
 import { questionReducer } from './store/questions/qustions.reducer';
+import { provideTranslateService } from '@ngx-translate/core';
+import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideClientHydration(withEventReplay()),
-    provideHttpClient(withFetch(), withInterceptors([
+    provideHttpClient(
+      withFetch(),
+      withInterceptors([
         headersInterceptor,
         lodingInterceptor,
         errorInterceptor,
-    ])),
+      ]),
+    ),
     provideAnimations(),
     provideAnimationsAsync(),
     provideToastr(),
     importProvidersFrom(NgxSpinnerModule),
     provideStore({
-        modal: modalReducer,
-        questions:questionReducer
+      modal: modalReducer,
+      questions: questionReducer,
     }),
     providePrimeNG({
-        theme: {
-            preset: Aura,
-        },
+      theme: {
+        preset: Aura,
+      },
     }),
     {
-        provide: BASEURL,
-        useValue: environment.BASE_URL,
+      provide: BASEURL,
+      useValue: environment.BASE_URL,
     },
-    provideEffects(questionsEffects,modalEffects)
-],
+    provideEffects(questionsEffects, modalEffects),
+    // NgxTranslate
+    provideTranslateService({
+      loader: provideTranslateHttpLoader({
+        prefix: '/i18n/',
+        suffix: '.json',
+      }),
+      fallbackLang: 'en',
+      lang: 'en',
+    }),
+  ],
 };

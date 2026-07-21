@@ -18,7 +18,10 @@ import {
   styleUrl: './login.component.scss',
 })
 export class LoginComponent {
-  constructor(private router: Router, private toster: ToastrService) {}
+  constructor(
+    private router: Router,
+    private toster: ToastrService,
+  ) {}
 
   _authService = inject(AuthService);
   passwordVisible: boolean = false;

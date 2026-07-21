@@ -22,18 +22,22 @@
           formControlName="username"
           id="UserName"
         />
-        @if (registerForm.get('UserName')?.invalid &&
-        (registerForm.get('UserName')?.dirty
-        ||registerForm.get("UserName")?.touched) ) {
-        <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50">
-          @if (registerForm.get('UserName')?.hasError('required')) {
-          <div>userName is required.</div>
-          } @if (registerForm.get('UserName')?.hasError('maxLength')) {
-          <div>Max Length 10 Character</div>
-          } @if (registerForm.get('UserName')?.hasError('minLength')) {
-          <div>Min Length 4Character</div>
-          }
-        </div>
+        @if (
+          registerForm.get("username")?.invalid &&
+          (registerForm.get("username")?.dirty ||
+            registerForm.get("username")?.touched)
+        ) {
+          <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50">
+            @if (registerForm.get("UserName")?.hasError("required")) {
+              <div>userName is required.</div>
+            }
+            @if (registerForm.get("UserName")?.hasError("maxLength")) {
+              <div>Max Length 10 Character</div>
+            }
+            @if (registerForm.get("UserName")?.hasError("minLength")) {
+              <div>Min Length 4Character</div>
+            }
+          </div>
         }
       </div>
       <div>
@@ -44,18 +48,22 @@
           formControlName="firstName"
           id="FirstName"
         />
-        @if (registerForm.get('firstName')?.invalid &&
-        (registerForm.get('firstName')?.dirty
-        ||registerForm.get("firstName")?.touched) ) {
-        <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50">
-          @if (registerForm.get('firstName')?.hasError('required')) {
-          <div>Name is required.</div>
-          } @if (registerForm.get('firstName')?.hasError('maxLength')) {
-          <div>Max Length 10 Character</div>
-          } @if (registerForm.get('firstName')?.hasError('minLength')) {
-          <div>Min Length 4Character</div>
-          }
-        </div>
+        @if (
+          registerForm.get("firstName")?.invalid &&
+          (registerForm.get("firstName")?.dirty ||
+            registerForm.get("firstName")?.touched)
+        ) {
+          <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50">
+            @if (registerForm.get("firstName")?.hasError("required")) {
+              <div>Name is required.</div>
+            }
+            @if (registerForm.get("firstName")?.hasError("maxLength")) {
+              <div>Max Length 10 Character</div>
+            }
+            @if (registerForm.get("firstName")?.hasError("minLength")) {
+              <div>Min Length 4Character</div>
+            }
+          </div>
         }
       </div>
       <div>
@@ -66,18 +74,22 @@
           formControlName="lastName"
           id="LastName"
         />
-        @if (registerForm.get('firstName')?.invalid &&
-        (registerForm.get('firstName')?.dirty ||
-        registerForm.get("lastName")?.touched) ) {
-        <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50">
-          @if (registerForm.get('lastName')?.hasError('required')) {
-          <div>Name is required.</div>
-          } @if (registerForm.get('lastName')?.hasError('maxLength')) {
-          <div>Max Length 10 Character</div>
-          } @if (registerForm.get('lastName')?.hasError('minLength')) {
-          <div>Min Length 4Character</div>
-          }
-        </div>
+        @if (
+          registerForm.get("lastName")?.invalid &&
+          (registerForm.get("lastName")?.dirty ||
+            registerForm.get("lastName")?.touched)
+        ) {
+          <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50">
+            @if (registerForm.get("lastName")?.hasError("required")) {
+              <div>Name is required.</div>
+            }
+            @if (registerForm.get("lastName")?.hasError("maxLength")) {
+              <div>Max Length 10 Character</div>
+            }
+            @if (registerForm.get("lastName")?.hasError("minLength")) {
+              <div>Min Length 4Character</div>
+            }
+          </div>
         }
       </div>
       <div>
@@ -88,16 +100,19 @@
           formControlName="email"
           id="email"
         />
-        @if (registerForm.get('email')?.invalid &&
-        (registerForm.get('email')?.dirty || registerForm.get("email")?.touched)
+        @if (
+          registerForm.get("email")?.invalid &&
+          (registerForm.get("email")?.dirty ||
+            registerForm.get("email")?.touched)
         ) {
-        <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50">
-          @if (registerForm.get('email')?.hasError('required')) {
-          <div>Name is required.</div>
-          } @if (registerForm.get('email')?.hasError('email')) {
-          <div>Inter Email Valid</div>
-          }
-        </div>
+          <div class="p-4 mb-10 text-sm text-red-800 rounded-lg bg-red-50">
+            @if (registerForm.get("email")?.hasError("required")) {
+              <div>Name is required.</div>
+            }
+            @if (registerForm.get("email")?.hasError("email")) {
+              <div>Inter Email Valid</div>
+            }
+          </div>
         }
       </div>
       <div class="relative">
@@ -159,16 +174,19 @@
           formControlName="phone"
           id="phone"
         />
-        @if (registerForm.get('phone')?.invalid &&
-        (registerForm.get('phone')?.dirty ||
-        registerForm.get("pattern")?.touched) ) {
-        <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50">
-          @if (registerForm.get('phone')?.hasError('required')) {
-          <div>Phone is required.</div>
-          } @if (registerForm.get('phone')?.hasError('pattern')) {
-          <div>Inter Phone Valid</div>
-          }
-        </div>
+        @if (
+          registerForm.get("phone")?.invalid &&
+          (registerForm.get("phone")?.dirty ||
+            registerForm.get("phone")?.touched)
+        ) {
+          <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50">
+            @if (registerForm.get("phone")?.hasError("required")) {
+              <div>Phone is required.</div>
+            }
+            @if (registerForm.get("phone")?.hasError("pattern")) {
+              <div>Inter Phone Valid</div>
+            }
+          </div>
         }
       </div>
       <div class="text-sm text-gray-500">

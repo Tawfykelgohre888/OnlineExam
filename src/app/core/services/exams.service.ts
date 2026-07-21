@@ -11,7 +11,7 @@ export class ExamsService {
 
   getAllExamsBySubject(id: String): Observable<RootObject> {
     return this.http.get<RootObject>(
-      `${environment.BASE_URL}/api/v1/exams?subject=${id} `
+      `${environment.BASE_URL}/api/v1/exams?subject=${id} `,
     );
   }
 }

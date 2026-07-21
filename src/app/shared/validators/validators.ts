@@ -1,7 +1,7 @@
 import { Validators } from '@angular/forms';
 
 export const storePasswordValidator = Validators.pattern(
-  /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
+  /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
 );
 
 export const phoneNumberValidator = Validators.pattern('^01[0-2,5][0-9]{8}$');
