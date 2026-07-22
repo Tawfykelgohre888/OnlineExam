@@ -8,7 +8,6 @@
     <h6 class="mb-4 self-start font-bold text-2xl">Sign In</h6>
     <form
       [formGroup]="loginForm"
-      autocomplete="off"
       (ngSubmit)="LoginPOst()"
       class="w-full flex flex-col gap-3"
     >
@@ -20,21 +19,21 @@
           placeholder="Enter Email"
           id="email"
         />
-        @if(loginForm.getError('required')){
-        <p>This field is required</p>
-        }@else if (loginForm.getError('email')) {
-        <p>enter email valid</p>
+        @if (loginForm.getError("required")) {
+          <p>This field is required</p>
+        } @else if (loginForm.getError("email")) {
+          <p>enter email valid</p>
         }
       </div>
       <div class="relative">
         <input
           class="outline-none focus:ring-0 w-full border border-gray-300 rounded px-4 py-2"
-          [type]="passwordVisible ? 'text' : 'password' "
+          [type]="passwordVisible ? 'text' : 'password'"
           formControlName="password"
           placeholder="Password"
           id="password"
         />
-        <span class="absolute top-1/2 -translate-y-1/2 right-3 cursor-pointer ">
+        <span class="absolute top-1/2 -translate-y-1/2 right-3 cursor-pointer">
           <!-- SVG icon here -->
           <svg
             (click)="togglePassword()"
@@ -60,7 +59,8 @@
       </div>
       <button
         type="submit"
-        class="bg-blue-600 text-white rounded px-4 py-2 hover:bg-blue-700 transition"
+        [disabled]="loginForm.invalid"
+        class="bg-blue-600 text-white rounded px-4 py-2 cursor-pointer disabled:bg-blue-100 disabled:text-blue-400 disabled:cursor-not-allowed"
       >
         Login
       </button>

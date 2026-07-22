@@ -33,6 +33,7 @@
     "ngx-spinner": "^19.0.0",
     "ngx-toastr": "^19.0.0",
     "online-exam": "file:",
+    "primeicons": "^8.0.0",
     "primeng": "^19.1.4",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",

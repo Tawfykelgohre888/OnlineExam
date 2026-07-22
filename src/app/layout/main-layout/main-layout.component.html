@@ -125,42 +125,64 @@
       </li>
       <li (click)="logout()">
         <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg">
-          <svg
-            width="25"
-            height="26"
-            viewBox="0 0 25 26"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
+          <div
+            class="delelted p-1 bg-blue-600 flex items-center justify-center"
           >
-            <path
-              d="M5.20841 2.58334H19.7917C20.068 2.58334 20.333 2.69308 20.5283 2.88843C20.7237 3.08378 20.8334 3.34874 20.8334 3.625V22.375C20.8334 22.6513 20.7237 22.9162 20.5283 23.1116C20.333 23.3069 20.068 23.4167 19.7917 23.4167H5.20841C4.93215 23.4167 4.6672 23.3069 4.47185 23.1116C4.27649 22.9162 4.16675 22.6513 4.16675 22.375V3.625C4.16675 3.34874 4.27649 3.08378 4.47185 2.88843C4.6672 2.69308 4.93215 2.58334 5.20841 2.58334ZM9.37508 11.9583V8.83334L4.16675 13L9.37508 17.1667V14.0417H15.6251V11.9583H9.37508Z"
-              fill="#4461F2"
-            />
-          </svg>
+            <i class="pi pi-arrow-left text-white"> </i>
+          </div>
 
           <span class="flex-1 ms-10 whitespace-nowrap">Log Out</span>
         </a>
       </li>
-      <li (click)="deleteMyAccount()">
-        <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg">
-          <svg
-            width="25"
-            height="26"
-            viewBox="0 0 25 26"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M5.20841 2.58334H19.7917C20.068 2.58334 20.333 2.69308 20.5283 2.88843C20.7237 3.08378 20.8334 3.34874 20.8334 3.625V22.375C20.8334 22.6513 20.7237 22.9162 20.5283 23.1116C20.333 23.3069 20.068 23.4167 19.7917 23.4167H5.20841C4.93215 23.4167 4.6672 23.3069 4.47185 23.1116C4.27649 22.9162 4.16675 22.6513 4.16675 22.375V3.625C4.16675 3.34874 4.27649 3.08378 4.47185 2.88843C4.6672 2.69308 4.93215 2.58334 5.20841 2.58334ZM9.37508 11.9583V8.83334L4.16675 13L9.37508 17.1667V14.0417H15.6251V11.9583H9.37508Z"
-              fill="#4461F2"
-            />
-          </svg>
+      <li (click)="visible = true">
+        <div
+          class="flex items-center p-2 text-red-500 rounded-lg cursor-pointer"
+        >
+          <div class="delelted p-1 bg-red-500 flex items-center justify-center">
+            <i class="pi pi-arrow-left text-white"> </i>
+          </div>
 
           <span class="flex-1 ms-10 whitespace-nowrap">Delete My Accounts</span>
-        </a>
+        </div>
       </li>
     </ul>
   </div>
 </aside>
 
 <router-outlet />
+
+<div class="flex justify-center">
+  <p-dialog
+    [(visible)]="visible"
+    [modal]="true"
+    [closable]="false"
+    header="Delete your account."
+    [style]="{ width: '40rem' }"
+  >
+    <div class="flex flex-col gap-4">
+      <p class="text-surface-500 dark:text-surface-400 text-sm mt-0 mb-0">
+        This action cannot be undone. All of your data, including projects,
+        files, and settings will be permanently removed.
+      </p>
+      <div class="flex justify-end gap-2">
+        <button
+          type="button"
+          pButton
+          severity="secondary"
+          (click)="visible = false"
+        >
+          Cancel
+        </button>
+        <button
+          type="button"
+          pButton
+          severity="danger"
+          (click)="visible = false"
+          (click)="deleteMyAccount()"
+        >
+          Delete
+        </button>
+      </div>
+    </div>
+  </p-dialog>
+</div>

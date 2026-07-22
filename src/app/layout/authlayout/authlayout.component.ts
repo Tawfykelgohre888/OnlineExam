@@ -5,8 +5,6 @@ import { RouterOutlet } from '@angular/router';
   selector: 'app-authlayout',
   imports: [RouterOutlet],
   templateUrl: './authlayout.component.html',
-  styleUrl: './authlayout.component.scss'
+  styleUrl: './authlayout.component.scss',
 })
-export class AuthlayoutComponent {
-
-}
+export class AuthlayoutComponent {}

@@ -40,8 +40,8 @@ export class LoginComponent {
       this._authService.LOGIN(payload).subscribe({
         next: (res) => {
           localStorage.setItem('userToken', res.token);
-          this.router.navigate(['/mainLayout/dashboard']);
           this.toster.success(res.message);
+          this.router.navigate(['/mainLayout/dashboard']);
         },
       });
     } else {

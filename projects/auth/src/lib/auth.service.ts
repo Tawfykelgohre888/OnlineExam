@@ -29,10 +29,7 @@ export class AuthService implements autApi {
   LOGIN(data: login): Observable<general> {
     return this._httpClient
       .post<LoginRegisterResponse>(this._baseUrl + authEndPoint.SIGNIN, data)
-      .pipe(
-        map((res) => this._authApiAdaptorService.adapt(res)),
-        catchError((err) => of(err))
-      );
+      .pipe(map((res) => this._authApiAdaptorService.adapt(res)));
   }
 
   REGISTER(data: SIGNUP): Observable<general> {
@@ -40,7 +37,7 @@ export class AuthService implements autApi {
       .post<LoginRegisterResponse>(this._baseUrl + authEndPoint.SIGNUP, data)
       .pipe(
         map((res) => this._authApiAdaptorService.adapt(res)),
-        catchError((err) => of(err))
+        catchError((err) => of(err)),
       );
   }
 
@@ -48,13 +45,13 @@ export class AuthService implements autApi {
     return this._httpClient
       .patch<ChangePasswordResponse>(
         this._baseUrl + authEndPoint.CHANGEPASSWORD,
-        data
+        data,
       )
       .pipe(
         map((res: ChangePasswordResponse) =>
-          this._authApiAdaptorService.adaptorChangePasowrd(res)
+          this._authApiAdaptorService.adaptorChangePasowrd(res),
         ),
-        catchError((err) => of(err))
+        catchError((err) => of(err)),
       );
   }
 
@@ -62,13 +59,13 @@ export class AuthService implements autApi {
     return this._httpClient
       .post<forgetPasswordResponse>(
         this._baseUrl + authEndPoint.FORGETPASSWORD,
-        data
+        data,
       )
       .pipe(
         map((res: forgetPasswordResponse) =>
-          this._authApiAdaptorService.adaptSendOtp(res)
+          this._authApiAdaptorService.adaptSendOtp(res),
         ),
-        catchError((err) => of(err))
+        catchError((err) => of(err)),
       );
   }
 
@@ -76,11 +73,11 @@ export class AuthService implements autApi {
     return this._httpClient
       .post<verifyResetCodeResponse>(
         this._baseUrl + authEndPoint.VERIFYRESETCODE,
-        data
+        data,
       )
       .pipe(
         map((res) => this._authApiAdaptorService.adaptverifyResetCode(res)),
-        catchError((err) => of(err))
+        catchError((err) => of(err)),
       );
   }
 
@@ -88,11 +85,11 @@ export class AuthService implements autApi {
     return this._httpClient
       .put<verifyResetCodeResponse>(
         this._baseUrl + authEndPoint.RESETPASSWORD,
-        data
+        data,
       )
       .pipe(
         map((res) => this._authApiAdaptorService.adaptverifyResetCode(res)),
-        catchError((err) => of(err))
+        catchError((err) => of(err)),
       );
   }
 }
