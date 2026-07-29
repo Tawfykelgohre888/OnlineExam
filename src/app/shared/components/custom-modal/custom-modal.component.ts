@@ -1,10 +1,10 @@
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { questionAdapter } from '../../core/interface/question';
+import { questionAdapter } from '../../../core/interface/question';
 import {
   selectCurrentQuestion,
   selectNumQuestion,
-} from '../../store/questions/questions.select';
+} from '../../../store/questions/questions.select';
 import { Subject, takeUntil } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -12,7 +12,7 @@ import {
   onBack,
   onNext,
   updateQuestion,
-} from '../../store/questions/questions.action';
+} from '../../../store/questions/questions.action';
 @Component({
   selector: 'app-custom-modal',
   imports: [AsyncPipe, FormsModule],
@@ -78,7 +78,7 @@ export class CustomModalComponent implements OnInit, OnDestroy {
       updateQuestion({
         qId: this.currentQuestion._id,
         selectedAnswer: this.selectAnswer,
-      })
+      }),
     );
 
     // reset Selected Answer

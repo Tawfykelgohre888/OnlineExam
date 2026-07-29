@@ -6,15 +6,24 @@ import { Router } from '@angular/router';
 import { NavbarComponent } from '../../../layout/authlayout/navbar/navbar.component';
 import { FooterComponent } from '../../../layout/authlayout/footer/footer.component';
 import { email, required } from '../../../shared/validators/validators';
+import { AppInputComponent } from '../../../shared/components/Form/app-input/app-input.component';
 
 @Component({
   selector: 'app-forgetpassword',
-  imports: [ReactiveFormsModule, NavbarComponent, FooterComponent],
+  imports: [
+    ReactiveFormsModule,
+    NavbarComponent,
+    FooterComponent,
+    AppInputComponent,
+  ],
   templateUrl: './forgetpassword.component.html',
   styleUrl: './forgetpassword.component.scss',
 })
 export class ForgetpasswordComponent {
-  constructor(private toster: ToastrService, private router: Router) {}
+  constructor(
+    private toster: ToastrService,
+    private router: Router,
+  ) {}
   _authService = inject(AuthService);
 
   emailForm = new FormGroup({

@@ -14,11 +14,18 @@ import {
   storePasswordValidator,
 } from '../../../shared/validators/validators';
 import { SIGNUP } from '../../../../../projects/auth/src/lib/interfaces/registerInterfae';
+import { AppInputComponent } from '../../../shared/components/Form/app-input/app-input.component';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [RouterLink, ReactiveFormsModule, NavbarComponent, FooterComponent],
+  imports: [
+    RouterLink,
+    ReactiveFormsModule,
+    NavbarComponent,
+    FooterComponent,
+    AppInputComponent,
+  ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss',
 })
@@ -63,13 +70,5 @@ export class RegisterComponent {
     } else {
       this.registerForm.markAllAsTouched();
     }
-  }
-
-  togglePassword() {
-    this.passwordVisible = !this.passwordVisible;
-  }
-
-  toggleRePassword() {
-    this.rePasswordVisible = !this.rePasswordVisible;
   }
 }

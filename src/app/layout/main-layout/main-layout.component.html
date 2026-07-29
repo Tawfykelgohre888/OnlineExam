@@ -1,4 +1,4 @@
-<div class="relative flex items-center justify-center px-4">
+<div class="relative flex items-center justify-center px-4 pt-3">
   <form class="w-full max-w-2xl">
     <label for="default-search" class="mb-2 text-sm font-medium sr-only"
       >Search</label
@@ -7,21 +7,7 @@
       <div
         class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none"
       >
-        <svg
-          class="w-4 h-4 text-gray-500"
-          aria-hidden="true"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 20 20"
-        >
-          <path
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
-          />
-        </svg>
+        <i class="pi pi-search" style="font-size: 1rem"></i>
       </div>
       <input
         type="search"
@@ -32,35 +18,7 @@
       />
     </div>
   </form>
-  <button
-    type="submit"
-    class="text-white absolute end-40 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2"
-  >
-    Start Quiz
-  </button>
 </div>
-<button
-  data-drawer-target="logo-sidebar"
-  data-drawer-toggle="logo-sidebar"
-  aria-controls="logo-sidebar"
-  type="button"
-  class="inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
->
-  <span class="sr-only">Open sidebar</span>
-  <svg
-    class="w-6 h-6"
-    aria-hidden="true"
-    fill="currentColor"
-    viewBox="0 0 20 20"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path
-      clip-rule="evenodd"
-      fill-rule="evenodd"
-      d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"
-    ></path>
-  </svg>
-</button>
 
 <aside
   id="logo-sidebar"
@@ -71,7 +29,7 @@
     <a class="flex items-center ps-2.5 mb-5">
       <span
         class="self-center text-xl font-semibold whitespace-nowrap dark:text-black"
-        >ELEVATE</span
+        >ElGohre Tech ⭐⭐⭐</span
       >
     </a>
     <ul class="space-y-2 font-medium">
@@ -81,69 +39,46 @@
           class="flex items-center p-2 text-gray-900 rounded-lg bg-blue-700 dark:text-gray dark:hover:bg-blue-700"
           routerLink="/mainLayout/dashboard"
         >
-          <svg
-            class="w-5 h-5 text-white transition duration-7"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="currentColor"
-            viewBox="0 0 22 21"
-          >
-            <path
-              d="M16.975 11H10V4.025a1 1 0 0 0-1.066-.998 8.5 8.5 0 1 0 9.039 9.039.999.999 0 0 0-1-1.066h.002Z"
-            />
-            <path
-              d="M12.5 0c-.157 0-.311.01-.565.027A1 1 0 0 0 11 1.02V10h8.975a1 1 0 0 0 1-.935c.013-.188.028-.374.028-.565A8.51 8.51 0 0 0 12.5 0Z"
-            />
-          </svg>
+          <i class="pi pi-home text-white"></i>
+
           <span class="ms-3 text-white">Dashboard</span>
         </a>
       </li>
       <li>
         <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg">
-          <svg
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <g clip-path="url(#clip0_19668_369)">
-              <path
-                d="M13.25 0.75C10.2663 0.75 7.40483 1.93526 5.29505 4.04505C3.18526 6.15483 2 9.01631 2 12H-1.75L3.1125 16.8625L3.2 17.0375L8.25 12H4.5C4.5 7.1625 8.4125 3.25 13.25 3.25C18.0875 3.25 22 7.1625 22 12C22 16.8375 18.0875 20.75 13.25 20.75C10.8375 20.75 8.65 19.7625 7.075 18.175L5.3 19.95C6.34177 20.9975 7.58061 21.8284 8.94508 22.3948C10.3095 22.9612 11.7726 23.2518 13.25 23.25C16.2337 23.25 19.0952 22.0647 21.205 19.955C23.3147 17.8452 24.5 14.9837 24.5 12C24.5 9.01631 23.3147 6.15483 21.205 4.04505C19.0952 1.93526 16.2337 0.75 13.25 0.75ZM12 7V13.25L17.3125 16.4L18.275 14.8L13.875 12.1875V7H12Z"
-                fill="#4461F2"
-              />
-            </g>
-            <defs>
-              <clipPath id="clip0_19668_369">
-                <rect width="24" height="24" fill="white" />
-              </clipPath>
-            </defs>
-          </svg>
+          <div class="p-1 bg-blue-600 flex items-center justify-center rounded">
+            <i class="pi pi-sync text-white"></i>
+          </div>
 
           <span class="flex-1 ms-10 whitespace-nowrap">Quiz History</span>
         </a>
       </li>
-      <li (click)="logout()">
-        <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg">
-          <div
-            class="delelted p-1 bg-blue-600 flex items-center justify-center"
-          >
-            <i class="pi pi-arrow-left text-white"> </i>
-          </div>
-
-          <span class="flex-1 ms-10 whitespace-nowrap">Log Out</span>
-        </a>
-      </li>
-      <li (click)="visible = true">
-        <div
-          class="flex items-center p-2 text-red-500 rounded-lg cursor-pointer"
+      <li>
+        <button
+          type="button"
+          (click)="logout()"
+          class="w-full flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 transition-colors"
         >
-          <div class="delelted p-1 bg-red-500 flex items-center justify-center">
-            <i class="pi pi-arrow-left text-white"> </i>
+          <div class="p-1 bg-blue-600 flex items-center justify-center rounded">
+            <i class="pi pi-arrow-left text-white"></i>
           </div>
 
-          <span class="flex-1 ms-10 whitespace-nowrap">Delete My Accounts</span>
-        </div>
+          <span class="flex-1 ms-10 text-left">Log Out</span>
+        </button>
+      </li>
+
+      <li>
+        <button
+          type="button"
+          (click)="visible = true"
+          class="w-full flex items-center p-2 text-red-500 rounded-lg hover:bg-red-50 transition-colors"
+        >
+          <div class="p-1 bg-red-500 flex items-center justify-center rounded">
+            <i class="pi pi-trash text-white"></i>
+          </div>
+
+          <span class="flex-1 ms-10 text-left">Delete My Account</span>
+        </button>
       </li>
     </ul>
   </div>
@@ -156,32 +91,38 @@
     [(visible)]="visible"
     [modal]="true"
     [closable]="false"
-    header="Delete your account."
-    [style]="{ width: '40rem' }"
+    header="Delete Account"
+    [style]="{ width: '32rem' }"
   >
-    <div class="flex flex-col gap-4">
-      <p class="text-surface-500 dark:text-surface-400 text-sm mt-0 mb-0">
-        This action cannot be undone. All of your data, including projects,
-        files, and settings will be permanently removed.
-      </p>
-      <div class="flex justify-end gap-2">
+    <div class="flex flex-col gap-5">
+      <div class="flex items-center gap-3">
+        <i class="pi pi-exclamation-triangle text-red-500 text-3xl"></i>
+
+        <div>
+          <h3 class="font-semibold text-lg">Are you sure?</h3>
+          <p class="text-gray-500 text-sm mt-1">
+            This action is permanent and cannot be undone. Your account and all
+            quiz history will be permanently deleted.
+          </p>
+        </div>
+      </div>
+
+      <div class="flex justify-end gap-3">
         <button
           type="button"
           pButton
+          label="Cancel"
           severity="secondary"
           (click)="visible = false"
-        >
-          Cancel
-        </button>
+        ></button>
+
         <button
           type="button"
           pButton
+          label="Delete Account"
           severity="danger"
-          (click)="visible = false"
-          (click)="deleteMyAccount()"
-        >
-          Delete
-        </button>
+          (click)="deleteMyAccount(); visible = false"
+        ></button>
       </div>
     </div>
   </p-dialog>

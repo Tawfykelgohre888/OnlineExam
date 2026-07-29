@@ -10,10 +10,19 @@ import {
   required,
   storePasswordValidator,
 } from '../../../shared/validators/validators';
+import { CommonModule } from '@angular/common';
+import { AppInputComponent } from '../../../shared/components/Form/app-input/app-input.component';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [RouterLink, ReactiveFormsModule, NavbarComponent, FooterComponent],
+  imports: [
+    RouterLink,
+    ReactiveFormsModule,
+    NavbarComponent,
+    FooterComponent,
+    CommonModule,
+    AppInputComponent,
+  ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })
@@ -31,7 +40,7 @@ export class LoginComponent {
   });
 
   // start Logic Login
-  LoginPOst() {
+  LoginPost() {
     const payload = {
       email: this.loginForm.value.email!,
       password: this.loginForm.value.password!,

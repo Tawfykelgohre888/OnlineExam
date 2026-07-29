@@ -9,7 +9,7 @@ import {
   selectExamStatus,
   selectModalStatus,
 } from '../../../store/modal/modal.select';
-import { CustomModalComponent } from '../../../shared/custom-modal/custom-modal.component';
+import { CustomModalComponent } from '../../../shared/components/custom-modal/custom-modal.component';
 import { openModal } from '../../../store/modal/modal.action';
 import { QuestionService } from '../../services/question.service';
 import { ExamSautes } from '../../../store/modal/modal.state';
