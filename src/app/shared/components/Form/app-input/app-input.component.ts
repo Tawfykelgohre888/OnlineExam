@@ -1,22 +1,35 @@
-import { Component, forwardRef, input, signal } from '@angular/core';
+import {
+  Component,
+  forwardRef,
+  inject,
+  input,
+  Optional,
+  Self,
+  signal,
+} from '@angular/core';
 import { InputType } from './input.types';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import {
+  ControlValueAccessor,
+  NG_VALUE_ACCESSOR,
+  NgControl,
+} from '@angular/forms';
+import { ValidationMsgComponent } from '../validation-msg/validation-msg.component';
 
 @Component({
   selector: 'app-input',
   standalone: true,
-  imports: [],
+  imports: [ValidationMsgComponent],
   templateUrl: './app-input.component.html',
   styleUrl: './app-input.component.scss',
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => AppInputComponent),
-      multi: true,
-    },
-  ],
 })
 export class AppInputComponent implements ControlValueAccessor {
+  @Optional() @Self() public ngControl = inject(NgControl, { optional: true });
+
+  constructor() {
+    if (this.ngControl) {
+      this.ngControl.valueAccessor = this;
+    }
+  }
   label = input('');
   placeholder = input('');
   type = input<InputType>('text');
@@ -60,5 +73,11 @@ export class AppInputComponent implements ControlValueAccessor {
       return this.showPassword() ? 'text' : 'password';
     }
     return this.type();
+  }
+
+  get isInvalid(): boolean {
+    if (!this.ngControl || !this.ngControl.control) return false;
+    const { invalid, touched, dirty } = this.ngControl.control;
+    return !!(invalid && (touched || dirty));
   }
 }

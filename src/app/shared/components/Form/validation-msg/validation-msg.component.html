@@ -1,0 +1,8 @@
+@if (errorMessage()) {
+  <section class="mt-1 max-w-[320px] text-center">
+    <p-message severity="error">
+      <i class="pi pi-times-circle translate-0.5 mr-0.5"></i>
+      {{ errorMessage() }}
+    </p-message>
+  </section>
+}

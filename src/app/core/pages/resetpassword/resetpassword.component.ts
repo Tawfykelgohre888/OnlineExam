@@ -6,27 +6,17 @@ import {
   required,
   storePasswordValidator,
 } from '../../../shared/validators/validators';
+import { AppInputComponent } from '../../../shared/components/Form/app-input/app-input.component';
 
 @Component({
   selector: 'app-resetpassword',
-  imports: [NavbarComponent, FooterComponent, FormsModule],
+  imports: [NavbarComponent, FooterComponent, FormsModule, AppInputComponent],
   templateUrl: './resetpassword.component.html',
   styleUrl: './resetpassword.component.scss',
 })
 export class RESETPASSWORDComponent {
-  passwordVisible: boolean = false;
-  rePasswordVisible: boolean = false;
-
   loginForm = new FormGroup({
     password: new FormControl('', [required, storePasswordValidator]),
     rePassword: new FormControl('', [required, storePasswordValidator]),
   });
-
-  togglePassword() {
-    this.passwordVisible = !this.passwordVisible;
-  }
-
-  toggleRePassword() {
-    this.rePasswordVisible = !this.rePasswordVisible;
-  }
 }

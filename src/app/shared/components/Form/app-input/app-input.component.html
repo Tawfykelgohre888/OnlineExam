@@ -17,14 +17,18 @@
       [disabled]="isDisabled()"
       (input)="onInputChange($event)"
       (blur)="onTouched()"
-      class="w-full rounded-lg border border-gray-300 px-4 py-2 outline-none transition-all focus:border-blue-600 disabled:bg-gray-100 disabled:cursor-not-allowed"
+      class="w-full rounded-lg border px-4 py-2 outline-none transition-all disabled:cursor-not-allowed disabled:bg-gray-100"
+      [class.border-red-500]="isInvalid"
+      [class.focus:border-red-600]="isInvalid"
+      [class.border-gray-300]="!isInvalid"
+      [class.focus:border-blue-600]="!isInvalid"
     />
 
     @if (isPassword()) {
       <button
         type="button"
         (click)="togglePassword()"
-        class="absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer text-gray-500 hover:text-blue-600 transition-colors focus:outline-none"
+        class="absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer text-gray-500 transition-colors hover:text-blue-600 focus:outline-none"
       >
         @if (showPassword()) {
           <i class="pi pi-eye"></i>
@@ -34,4 +38,10 @@
       </button>
     }
   </div>
+
+  <app-validation-msg
+    [errors]="ngControl?.control?.errors"
+    [touched]="!!(ngControl?.control?.touched || ngControl?.control?.dirty)"
+    [label]="label()"
+  />
 </div>
