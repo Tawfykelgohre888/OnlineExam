@@ -30,7 +30,7 @@ export const routes: Routes = [
       {
         path: 'forgetPassword',
         loadComponent: () =>
-          import('./core/pages/forgetpassword/forgetpassword.component').then(
+          import('./Feature/Auth/Pages/forgetpassword/forgetpassword.component').then(
             (c) => c.ForgetpasswordComponent,
           ),
         title: 'FORGETPASSWORD',
@@ -63,7 +63,7 @@ export const routes: Routes = [
       {
         path: 'dashboard',
         loadComponent: () =>
-          import('./core/pages/dashboard/dashboard.component').then(
+          import('./Feature/dashboard/dashboard.component').then(
             (c) => c.DashboardComponent,
           ),
         title: 'dashboard',
@@ -71,7 +71,7 @@ export const routes: Routes = [
       {
         path: 'exams/:id',
         loadComponent: () =>
-          import('./core/pages/exams/exams.component').then(
+          import('./Feature/Exam/pages/exams/exams.component').then(
             (c) => c.ExamsComponent,
           ),
         title: 'exams',

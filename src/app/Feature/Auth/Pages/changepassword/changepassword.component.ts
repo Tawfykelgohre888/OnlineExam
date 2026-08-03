@@ -1,9 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { AuthService } from '../../../../../projects/auth/src/public-api';
-import { RouterLink } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { NavbarComponent } from '../../../layout/authlayout/navbar/navbar.component';
+import { NavbarComponent } from '../../../../layout/authlayout/navbar/navbar.component';
+import { AuthService } from 'auth';
 
 @Component({
   selector: 'app-changepassword',

@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
-import { DeleteMyAccountService } from '../../core/services/delete-my-account.service';
+import { DeleteMyAccountService } from '../../Feature/Auth/Services/delete-my-account.service';
 import { ToastrService } from 'ngx-toastr';
 import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';

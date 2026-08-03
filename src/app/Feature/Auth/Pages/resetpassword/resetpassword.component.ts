@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
-import { NavbarComponent } from '../../../layout/authlayout/navbar/navbar.component';
-import { FooterComponent } from '../../../layout/authlayout/footer/footer.component';
+
 import { FormControl, FormGroup, FormsModule } from '@angular/forms';
+import { NavbarComponent } from '../../../../layout/authlayout/navbar/navbar.component';
+import { FooterComponent } from '../../../../layout/authlayout/footer/footer.component';
+import { AppInputComponent } from '../../../../shared/components/Form/app-input/app-input.component';
 import {
   required,
   storePasswordValidator,
-} from '../../../shared/validators/validators';
-import { AppInputComponent } from '../../../shared/components/Form/app-input/app-input.component';
+} from '../../../../shared/validators/validators';
 
 @Component({
   selector: 'app-resetpassword',

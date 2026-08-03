@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from '../../shared/environment/environment';
+import { environment } from '../../../shared/environment/environment';
 import { questionResponse } from '../interface/question';
-import * as questionByExam from '../../shared/endpoint';
+import * as questionByExam from '../../../shared/endpoint';
 import { map } from 'rxjs';
-import { MainAdapter } from '../adaptor/mainAdapt';
+import { MainAdapter } from '../../../core/adaptor/mainAdapt';
 @Injectable({
   providedIn: 'root',
 })

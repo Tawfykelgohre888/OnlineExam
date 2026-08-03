@@ -1,4 +1,4 @@
-import { questionAdapter } from '../../core/interface/question';
+import { questionAdapter } from '../../Feature/Exam/interface/question';
 
 export interface questionState {
   question: questionAdapter[];

@@ -1,6 +1,6 @@
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { questionAdapter } from '../../../core/interface/question';
+import { questionAdapter } from '../../../Feature/Exam/interface/question';
 import {
   selectCurrentQuestion,
   selectNumQuestion,

@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { switchMap, map, tap } from 'rxjs/operators';
-import { QuestionService } from '../../core/services/question.service';
+import { QuestionService } from '../../Feature/Exam/Services/question.service';
 import {
   loadQuestions,
   setCurrentQuestions,
@@ -19,16 +19,16 @@ export class questionsEffects {
       switchMap((action) =>
         this.questionService.getQuestionByExamId(action.examId).pipe(
           tap((data) => console.log('questionData:', data)),
-          map((data) => setQuestions({ question: data }))
-        )
-      )
+          map((data) => setQuestions({ question: data })),
+        ),
+      ),
     );
   });
 
   setQuestionEffect$ = createEffect(() =>
     this.actions$.pipe(
       ofType(setQuestions),
-      map((action) => setCurrentQuestions({ question: action.question[0] }))
-    )
+      map((action) => setCurrentQuestions({ question: action.question[0] })),
+    ),
   );
 }

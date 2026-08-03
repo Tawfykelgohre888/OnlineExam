@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Adapter } from '../interface/Adapter';
-import { questionResponse, questionAdapter } from '../interface/question';
+import {
+  questionResponse,
+  questionAdapter,
+} from '../../Feature/Exam/interface/question';
 
 @Injectable({
   providedIn: 'root',

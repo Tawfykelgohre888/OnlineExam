@@ -1,10 +1,10 @@
 import { Component, inject } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { AuthService } from '../../../../../projects/auth/src/public-api';
+import { AuthService } from '../../../../../../projects/auth/src/public-api';
 import { ToastrService } from 'ngx-toastr';
-import { NavbarComponent } from '../../../layout/authlayout/navbar/navbar.component';
-import { FooterComponent } from '../../../layout/authlayout/footer/footer.component';
+import { NavbarComponent } from '../../../../layout/authlayout/navbar/navbar.component';
+import { FooterComponent } from '../../../../layout/authlayout/footer/footer.component';
 import {
   email,
   maxLength,
@@ -12,9 +12,9 @@ import {
   phoneNumberValidator,
   required,
   storePasswordValidator,
-} from '../../../shared/validators/validators';
-import { SIGNUP } from '../../../../../projects/auth/src/lib/interfaces/registerInterfae';
-import { AppInputComponent } from '../../../shared/components/Form/app-input/app-input.component';
+} from '../../../../shared/validators/validators';
+import { SIGNUP } from '../../../../../../projects/auth/src/lib/interfaces/registerInterfae';
+import { AppInputComponent } from '../../../../shared/components/Form/app-input/app-input.component';
 
 @Component({
   selector: 'app-register',

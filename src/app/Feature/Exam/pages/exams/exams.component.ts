@@ -1,6 +1,5 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { ExamsService } from '../../services/exams.service';
 import { Exam } from '../../interface/exams';
 import { AsyncPipe, CommonModule } from '@angular/common';
 import { Store } from '@ngrx/store';
@@ -8,11 +7,12 @@ import { Observable } from 'rxjs';
 import {
   selectExamStatus,
   selectModalStatus,
-} from '../../../store/modal/modal.select';
-import { CustomModalComponent } from '../../../shared/components/custom-modal/custom-modal.component';
-import { openModal } from '../../../store/modal/modal.action';
-import { QuestionService } from '../../services/question.service';
-import { ExamSautes } from '../../../store/modal/modal.state';
+} from '../../../../store/modal/modal.select';
+import { CustomModalComponent } from '../../../../shared/components/custom-modal/custom-modal.component';
+import { openModal } from '../../../../store/modal/modal.action';
+import { QuestionService } from '../../Services/question.service';
+import { ExamSautes } from '../../../../store/modal/modal.state';
+import { ExamsService } from '../../Services/exams.service';
 @Component({
   selector: 'app-exams',
   standalone: true,
