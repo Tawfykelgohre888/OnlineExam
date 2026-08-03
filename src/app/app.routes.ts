@@ -14,7 +14,7 @@ export const routes: Routes = [
       {
         path: 'login',
         loadComponent: () =>
-          import('./core/pages/login/login.component').then(
+          import('./Feature/Auth/Pages/login/login.component').then(
             (c) => c.LoginComponent,
           ),
         title: 'login',
@@ -22,7 +22,7 @@ export const routes: Routes = [
       {
         path: 'register',
         loadComponent: () =>
-          import('./core/pages/register/register.component').then(
+          import('./Feature/Auth/Pages/register/register.component').then(
             (c) => c.RegisterComponent,
           ),
         title: 'register',
@@ -38,7 +38,7 @@ export const routes: Routes = [
       {
         path: 'verifyresetcode',
         loadComponent: () =>
-          import('./core/pages/verifyresetcode/verifyresetcode.component').then(
+          import('./Feature/Auth/verifyresetcode/verifyresetcode.component').then(
             (c) => c.VerifyresetcodeComponent,
           ),
         title: 'VERIFYRESETCODE',
@@ -46,7 +46,7 @@ export const routes: Routes = [
       {
         path: 'RESETPASSWORD',
         loadComponent: () =>
-          import('./core/pages/resetpassword/resetpassword.component').then(
+          import('./Feature/Auth/Pages/resetpassword/resetpassword.component').then(
             (c) => c.RESETPASSWORDComponent,
           ),
         title: 'RESETPASSWORD',
