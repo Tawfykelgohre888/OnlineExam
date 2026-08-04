@@ -17,7 +17,7 @@
       [disabled]="isDisabled()"
       (input)="onInputChange($event)"
       (blur)="onTouched()"
-      class="w-full rounded-lg border px-4 py-2 outline-none transition-all disabled:cursor-not-allowed disabled:bg-gray-100"
+      class="w-full border px-4 py-2 outline-none transition-all disabled:cursor-not-allowed disabled:bg-gray-100"
       [class.border-red-500]="isInvalid"
       [class.focus:border-red-600]="isInvalid"
       [class.border-gray-300]="!isInvalid"

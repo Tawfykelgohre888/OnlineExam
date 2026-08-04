@@ -3,8 +3,6 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../../../../projects/auth/src/lib/auth.service';
 import { ToastrService } from 'ngx-toastr';
-import { NavbarComponent } from '../../../../layout/authlayout/navbar/navbar.component';
-import { FooterComponent } from '../../../../layout/authlayout/footer/footer.component';
 import {
   email,
   required,
@@ -15,14 +13,7 @@ import { AppInputComponent } from '../../../../shared/components/Form/app-input/
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [
-    RouterLink,
-    ReactiveFormsModule,
-    NavbarComponent,
-    FooterComponent,
-    CommonModule,
-    AppInputComponent,
-  ],
+  imports: [RouterLink, ReactiveFormsModule, CommonModule, AppInputComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })
@@ -49,16 +40,15 @@ export class LoginComponent {
       this._authService.LOGIN(payload).subscribe({
         next: (res) => {
           localStorage.setItem('userToken', res.token);
-          this.toster.success(res.message);
+          this.toster.success(
+            'You have successfully logged in.',
+            'Login Successful',
+          );
           this.router.navigate(['/mainLayout/dashboard']);
         },
       });
     } else {
       this.loginForm.markAllAsTouched();
     }
-  }
-
-  togglePassword(): void {
-    this.passwordVisible = !this.passwordVisible;
   }
 }

@@ -19,13 +19,7 @@ import { AppInputComponent } from '../../../../shared/components/Form/app-input/
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [
-    RouterLink,
-    ReactiveFormsModule,
-    NavbarComponent,
-    FooterComponent,
-    AppInputComponent,
-  ],
+  imports: [RouterLink, ReactiveFormsModule, AppInputComponent],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss',
 })
@@ -60,7 +54,10 @@ export class RegisterComponent {
     if (this.registerForm.valid) {
       this._authService.REGISTER(payload).subscribe({
         next: (res) => {
-          this.toster.success(res.message, 'Register');
+          this.toster.success(
+            'Your account has been created successfully. Please log in to continue.',
+            'Registration Successful',
+          );
           this.router.navigate(['/login']);
         },
         error: (err) => {

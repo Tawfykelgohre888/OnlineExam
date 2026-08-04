@@ -3,9 +3,6 @@
     class="inputs flex flex-col items-center justify-center mt-15 p-5 text-center rounded bg-white shadow-md"
     style="width: 410px; height: 490px"
   >
-    <div class="header">
-      <app-navbar />
-    </div>
     <h3 class="mb-4 w-full text-left text-2xl font-bold">Sign up</h3>
 
     <form
@@ -22,23 +19,25 @@
           formControlName="username"
         ></app-input>
       </div>
-      <div>
-        <app-input
-          [label]="'First Name'"
-          [type]="'text'"
-          [placeholder]="'Inter Your The First Name'"
-          [required]="true"
-          formControlName="firstName"
-        ></app-input>
-      </div>
-      <div>
-        <app-input
-          [label]="'Last Name'"
-          [type]="'text'"
-          [placeholder]="'Inter Your The Last Name'"
-          [required]="true"
-          formControlName="lastName"
-        ></app-input>
+      <div class="flex items-center gap-3">
+        <div class="w-[50%]">
+          <app-input
+            [label]="'First Name'"
+            [type]="'text'"
+            [placeholder]="'Tawfik'"
+            [required]="true"
+            formControlName="firstName"
+          ></app-input>
+        </div>
+        <div class="w-[50%]">
+          <app-input
+            [label]="'Last Name'"
+            [type]="'text'"
+            [placeholder]="'Elgohre'"
+            [required]="true"
+            formControlName="lastName"
+          ></app-input>
+        </div>
       </div>
       <div>
         <app-input
@@ -73,7 +72,7 @@
         <app-input
           [label]="'Phone'"
           [type]="'tel'"
-          [placeholder]="'Inter Your The Phone'"
+          [placeholder]="'Enter your phone number'"
           [required]="true"
           formControlName="phone"
         ></app-input>
@@ -85,12 +84,11 @@
       </div>
       <button
         type="submit"
-        class="bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
+        [disabled]="registerForm.invalid"
+        class="bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition disabled:bg-blue-100 disabled:text-blue-400 disabled:cursor-not-allowed"
       >
         Create Account
       </button>
     </form>
-
-    <app-footer></app-footer>
   </div>
 </div>

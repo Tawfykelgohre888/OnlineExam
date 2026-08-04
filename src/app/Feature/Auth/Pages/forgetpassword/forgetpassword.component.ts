@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../../../../../../projects/auth/src/public-api';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { NavbarComponent } from '../../../../layout/authlayout/navbar/navbar.component';
 import { FooterComponent } from '../../../../layout/authlayout/footer/footer.component';
 import { email, required } from '../../../../shared/validators/validators';
@@ -10,12 +10,7 @@ import { AppInputComponent } from '../../../../shared/components/Form/app-input/
 
 @Component({
   selector: 'app-forgetpassword',
-  imports: [
-    ReactiveFormsModule,
-    NavbarComponent,
-    FooterComponent,
-    AppInputComponent,
-  ],
+  imports: [ReactiveFormsModule, AppInputComponent, RouterLink],
   templateUrl: './forgetpassword.component.html',
   styleUrl: './forgetpassword.component.scss',
 })
