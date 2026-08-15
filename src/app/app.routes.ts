@@ -76,6 +76,11 @@ export const routes: Routes = [
           ),
         title: 'exams',
       },
+      {
+        path: 'accountSetting',
+        loadChildren: () =>
+          import('./Feature/Account/Route/account.route').then((m) => m.routes),
+      },
     ],
   },
 ];

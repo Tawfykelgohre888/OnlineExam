@@ -3,20 +3,13 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../../../../../projects/auth/src/public-api';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { NavbarComponent } from '../../../layout/authlayout/navbar/navbar.component';
-import { FooterComponent } from '../../../layout/authlayout/footer/footer.component';
 import { required } from '../../../shared/validators/validators';
 import { AppInputComponent } from '../../../shared/components/Form/app-input/app-input.component';
 
 @Component({
   selector: 'app-verifyresetcode',
   standalone: true,
-  imports: [
-    ReactiveFormsModule,
-    NavbarComponent,
-    FooterComponent,
-    AppInputComponent,
-  ],
+  imports: [ReactiveFormsModule, AppInputComponent],
   templateUrl: './verifyresetcode.component.html',
   styleUrl: './verifyresetcode.component.scss',
 })
