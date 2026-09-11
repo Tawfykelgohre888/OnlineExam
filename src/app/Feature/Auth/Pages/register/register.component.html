@@ -1,93 +1,229 @@
-<div class="content flex flex-col items-center justify-center">
+<div class="content flex flex-col justify-center items-center w-[150%] h-full">
   <div
-    class="inputs flex flex-col items-center justify-center mt-15 p-5 text-center rounded bg-white shadow-md"
+    class="stepper-container flex items-center justify-center gap-2 mb-6 w-full"
   >
-    <h3 class="mb-4 w-full text-left text-2xl font-bold">Sign up</h3>
+    <!-- Step 1 Dot -->
+    <div class="relative flex items-center">
+      <div class="w-3 h-3 rounded-full bg-blue-600"></div>
+    </div>
 
-    <form
-      [formGroup]="registerForm"
-      class="w-full flex flex-col gap-3"
-      (ngSubmit)="submitRegisterForm()"
-    >
-      <div>
-        <app-input
-          [label]="'User Name'"
-          [placeholder]="'Enter Your User NAME'"
-          [type]="'text'"
-          [required]="false"
-          formControlName="username"
-        ></app-input>
-      </div>
-      <div class="flex items-center gap-3">
-        <div class="w-[50%]">
-          <app-input
-            [label]="'First Name'"
-            [type]="'text'"
-            [placeholder]="'Tawfik'"
-            [required]="true"
-            formControlName="firstName"
-          ></app-input>
-        </div>
-        <div class="w-[50%]">
-          <app-input
-            [label]="'Last Name'"
-            [type]="'text'"
-            [placeholder]="'Elgohre'"
-            [required]="true"
-            formControlName="lastName"
-          ></app-input>
-        </div>
-      </div>
-      <div>
-        <app-input
-          [label]="'Email'"
-          [type]="'email'"
-          [placeholder]="'Inter Your The Email'"
-          [required]="true"
-          formControlName="email"
-        ></app-input>
-      </div>
-      <div class="relative">
-        <app-input
-          [label]="'Password'"
-          [type]="'password'"
-          [placeholder]="'Inter Your The Password'"
-          [required]="true"
-          [isPassword]="true"
-          formControlName="password"
-        ></app-input>
-      </div>
-      <div class="relative">
-        <app-input
-          [label]="'RePassword'"
-          [type]="'password'"
-          [placeholder]="'Inter Your The RePassword'"
-          [required]="true"
-          [isPassword]="true"
-          formControlName="rePassword"
-        ></app-input>
-      </div>
-      <div>
-        <app-input
-          [label]="'Phone'"
-          [type]="'tel'"
-          [placeholder]="'Enter your phone number'"
-          [required]="true"
-          formControlName="phone"
-        ></app-input>
-      </div>
-      <div class="text-sm text-gray-500">
-        <a class="no-underline text-black" routerLink="/login"
-          >Already have an account? Login</a
-        >
-      </div>
-      <button
-        type="submit"
-        [disabled]="registerForm.invalid"
-        class="bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition disabled:bg-blue-100 disabled:text-blue-400 disabled:cursor-not-allowed"
-      >
-        Create Account
-      </button>
-    </form>
+    <div
+      class="h-[2px] w-12 transition-all duration-300"
+      [class.bg-blue-600]="currentStep() >= 2"
+      [class.border-b-2]="currentStep() < 2"
+      [class.border-dashed]="currentStep() < 2"
+      [class.border-blue-300]="currentStep() < 2"
+    ></div>
+
+    <!-- Step 2 Dot -->
+    <div class="relative flex items-center">
+      <div
+        class="w-3 h-3 rounded-full transition-all duration-300"
+        [class.bg-blue-600]="currentStep() >= 2"
+        [class.border-2]="currentStep() < 2"
+        [class.border-blue-400]="currentStep() < 2"
+        [class.bg-white]="currentStep() < 2"
+      ></div>
+    </div>
+
+    <div
+      class="h-[2px] w-12 transition-all duration-300"
+      [class.bg-blue-600]="currentStep() >= 3"
+      [class.border-b-2]="currentStep() < 3"
+      [class.border-dashed]="currentStep() < 3"
+      [class.border-blue-300]="currentStep() < 3"
+    ></div>
+
+    <!-- Step 3 Dot -->
+    <div class="relative flex items-center">
+      <div
+        class="w-3 h-3 rounded-full transition-all duration-300"
+        [class.bg-blue-600]="currentStep() >= 3"
+        [class.border-2]="currentStep() < 3"
+        [class.border-blue-400]="currentStep() < 3"
+        [class.bg-white]="currentStep() < 3"
+      ></div>
+    </div>
   </div>
+  <h1 class="text-3xl text-left font-bold mb-4">Create Account</h1>
+  @if (errorMessage()) {
+    <div class="alert alert-danger">
+      {{ errorMessage() }}
+    </div>
+  }
+
+  @switch (currentStep()) {
+    <!-- Step 1: Enter Email -->
+    @case (1) {
+      <form
+        [formGroup]="emailForm"
+        (ngSubmit)="onSendOtp()"
+        class="w-full flex flex-col gap-3 w-full"
+      >
+        <h3 class="mb-4 w-full text-left text-xl font-semibold">Email</h3>
+
+        <input
+          type="email"
+          placeholder="user@example.com"
+          formControlName="email"
+        />
+
+        <button
+          class="bg-blue-600 py-2 text-white disabled:bg-blue-100 disabled:text-blue-400 disabled:cursor-not-allowed cursor-pointer rounded hover:bg-blue-700 transition"
+          type="submit"
+          [disabled]="emailForm.invalid"
+        >
+          {{ isLoading() ? "Sending..." : "Next > " }}
+        </button>
+      </form>
+      <p class="text-sm text-gray-500 p-4">
+        Already have an account?
+        <a routerLink="/login" class="text-blue-600 hover:underline">Login</a>
+      </p>
+    }
+
+    <!-- Step 2: Enter OTP -->
+    @case (2) {
+      <form
+        [formGroup]="otpForm"
+        (ngSubmit)="onConfirmOtp()"
+        class="w-full flex flex-col gap-3"
+      >
+        <h3 class="mb-4 w-full text-left text-blue-400 text-2xl font-bold">
+          Verify OTP
+        </h3>
+        <p>
+          Please enter the 6-digits code we have sent to: <br />
+          user&#64;example.com. Edit
+        </p>
+        <div class="card flex justify-center p-2 rounded">
+          <p-inputOtp
+            formControlName="code"
+            [length]="6"
+            [integerOnly]="true"
+            [mask]="true"
+          />
+        </div>
+
+        <button
+          class="bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition disabled:bg-blue-100 disabled:text-blue-400 w-full disabled:cursor-not-allowed cursor-pointer"
+          type="submit"
+          [disabled]="otpForm.invalid"
+        >
+          {{ isLoading() ? "Verifying..." : "Verify Code" }}
+        </button>
+      </form>
+    }
+
+    <!-- Step 3: Register -->
+    @case (3) {
+      <div
+        class="inputs flex flex-col items-center justify-center mt-15 p-5 text-center rounded bg-white shadow-md"
+      >
+        <h3 class="mb-4 w-full text-left text-2xl font-bold">Sign up</h3>
+
+        <form
+          [formGroup]="registerForm"
+          class="w-full flex flex-col gap-3"
+          (ngSubmit)="submitRegisterForm()"
+        >
+          <!-- User Name -->
+          <div>
+            <app-input
+              [label]="'User Name'"
+              [placeholder]="'Enter Your User NAME'"
+              [type]="'text'"
+              [required]="false"
+              formControlName="username"
+            ></app-input>
+          </div>
+
+          <!-- First Name + Last Name -->
+          <div class="flex items-center gap-3">
+            <div class="w-[50%]">
+              <app-input
+                [label]="'First Name'"
+                [type]="'text'"
+                [placeholder]="'Tawfik'"
+                [required]="true"
+                formControlName="firstName"
+              ></app-input>
+            </div>
+
+            <div class="w-[50%]">
+              <app-input
+                [label]="'Last Name'"
+                [type]="'text'"
+                [placeholder]="'Elgohre'"
+                [required]="true"
+                formControlName="lastName"
+              ></app-input>
+            </div>
+          </div>
+
+          <!-- Email -->
+          <div>
+            <app-input
+              [label]="'Email'"
+              [type]="'email'"
+              [placeholder]="'Enter Your Email'"
+              [required]="true"
+              formControlName="email"
+            ></app-input>
+          </div>
+
+          <!-- Password -->
+          <div class="relative">
+            <app-input
+              [label]="'Password'"
+              [type]="'password'"
+              [placeholder]="'Enter Your Password'"
+              [required]="true"
+              [isPassword]="true"
+              formControlName="password"
+            ></app-input>
+          </div>
+
+          <!-- Confirm Password -->
+          <div class="relative">
+            <app-input
+              [label]="'RePassword'"
+              [type]="'password'"
+              [placeholder]="'Enter Your Password Again'"
+              [required]="true"
+              [isPassword]="true"
+              formControlName="confirmPassword"
+            ></app-input>
+          </div>
+
+          <!-- Phone -->
+          <div>
+            <app-input
+              [label]="'Phone'"
+              [type]="'tel'"
+              [placeholder]="'Enter your phone number'"
+              [required]="true"
+              formControlName="phone"
+            ></app-input>
+          </div>
+
+          <!-- Login Link -->
+          <div class="text-sm text-gray-500">
+            <a class="no-underline text-black" routerLink="/login">
+              Already have an account? Login
+            </a>
+          </div>
+
+          <!-- Submit -->
+          <button
+            type="submit"
+            [disabled]="registerForm.invalid"
+            class="bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition disabled:bg-blue-100 disabled:text-blue-400 disabled:cursor-not-allowed"
+          >
+            Create Account
+          </button>
+        </form>
+      </div>
+    }
+  }
 </div>

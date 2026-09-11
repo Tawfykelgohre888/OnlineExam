@@ -1,6 +1,5 @@
 import {
   Component,
-  forwardRef,
   inject,
   input,
   Optional,
@@ -8,11 +7,7 @@ import {
   signal,
 } from '@angular/core';
 import { InputType } from './input.types';
-import {
-  ControlValueAccessor,
-  NG_VALUE_ACCESSOR,
-  NgControl,
-} from '@angular/forms';
+import { ControlValueAccessor, NgControl } from '@angular/forms';
 import { ValidationMsgComponent } from '../validation-msg/validation-msg.component';
 
 @Component({

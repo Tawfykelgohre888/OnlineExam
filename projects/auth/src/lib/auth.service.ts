@@ -1,6 +1,6 @@
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { autApi } from './base/authApi';
-import { catchError, map, Observable, of } from 'rxjs';
+import { catchError, map, Observable, of, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { authEndPoint } from './enums/endPoindApt';
 import { AuthApiAdaptorService } from './adaptor/auth-api-adaptor.service';
@@ -8,7 +8,7 @@ import { BASEURL } from './base-url';
 import { login } from './interfaces/loginInterface';
 import { CHANGEPASSWORD } from './interfaces/changePassword';
 import { forgetPassword } from './interfaces/forgetPassword';
-import { response, restCode } from './interfaces/resteCode';
+import { restCode } from './interfaces/resteCode';
 import { RESETPASSWORD } from './interfaces/restePassword';
 import { SIGNUP } from './interfaces/registerInterfae';
 import { general } from './interfaces/genralAdptor';
@@ -23,13 +23,22 @@ import { verifyResetCodeResponse } from './interfaces/verifyResetCodeResponse';
 export class AuthService implements autApi {
   _httpClient = inject(HttpClient);
   _baseUrl = inject(BASEURL);
-
   _authApiAdaptorService = inject(AuthApiAdaptorService);
+  userEmail = signal<string>('');
+  isEmailVerified = signal<boolean>(false);
 
-  LOGIN(data: login): Observable<general> {
+  sendEmailVerification(email: any): Observable<any> {
     return this._httpClient
-      .post<LoginRegisterResponse>(this._baseUrl + authEndPoint.SIGNIN, data)
-      .pipe(map((res) => this._authApiAdaptorService.adapt(res)));
+      .post(this._baseUrl + authEndPoint.sendEmailVerification, { email })
+      .pipe(tap(() => this.userEmail.set(email)));
+  }
+  confirmEmailVerification(code: any): Observable<any> {
+    return this._httpClient
+      .post(this._baseUrl + authEndPoint.isEmailVerified, {
+        email: this.userEmail(),
+        code: code,
+      })
+      .pipe(tap(() => this.isEmailVerified.set(true)));
   }
 
   REGISTER(data: SIGNUP): Observable<general> {
@@ -41,6 +50,11 @@ export class AuthService implements autApi {
       );
   }
 
+  LOGIN(data: login): Observable<general> {
+    return this._httpClient
+      .post<LoginRegisterResponse>(this._baseUrl + authEndPoint.SIGNIN, data)
+      .pipe(map((res) => this._authApiAdaptorService.adapt(res)));
+  }
   CHANGEPASSWORD(data: CHANGEPASSWORD): Observable<ChangePasswordResponse> {
     return this._httpClient
       .patch<ChangePasswordResponse>(
