@@ -1,17 +1,18 @@
 export interface LoginRegisterResponse {
-  message: string;
-  token: string;
-  user: User;
-}
-
-export interface User {
-  username: string;
-  firstName: string;
-  lastName: string;
-  email: string;
-  phone: string;
-  role: string;
-  isVerified: boolean;
-  _id: string;
-  createdAt: string;
+  status: boolean;
+  code: number;
+  payload: {
+    user: {
+      id: string;
+      username: string;
+      email: string;
+      phone: string;
+      firstName: string;
+      lastName: string;
+      emailVerified: boolean;
+      phoneVerified: boolean;
+      role: string;
+    };
+    token: string;
+  };
 }

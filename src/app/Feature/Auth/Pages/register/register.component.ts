@@ -77,7 +77,6 @@ export class RegisterComponent {
         this.isLoading.set(false);
         this.toster.success('OTP sent successfully');
         this.currentStep.set(2);
-        console.log('Email sent successfully:', res);
       },
       error: (err) => {
         this.isLoading.set(false);
@@ -96,7 +95,6 @@ export class RegisterComponent {
         this.isLoading.set(false);
         this.toster.success('Email verified successfully');
         this.currentStep.set(3);
-        console.log(res);
       },
       error: (err) => {
         this.isLoading.set(false);

@@ -6,14 +6,11 @@ import { authEndPoint } from './enums/endPoindApt';
 import { AuthApiAdaptorService } from './adaptor/auth-api-adaptor.service';
 import { BASEURL } from './base-url';
 import { login } from './interfaces/loginInterface';
-import { CHANGEPASSWORD } from './interfaces/changePassword';
 import { forgetPassword } from './interfaces/forgetPassword';
-import { restCode } from './interfaces/resteCode';
 import { RESETPASSWORD } from './interfaces/restePassword';
 import { SIGNUP } from './interfaces/registerInterfae';
 import { general } from './interfaces/genralAdptor';
 import { LoginRegisterResponse } from './interfaces/backAdapt';
-import { ChangePasswordResponse } from './interfaces/ChangePasswordResponse';
 import { forgetPasswordResponse } from './interfaces/forgetPasswordResponse';
 import { verifyResetCodeResponse } from './interfaces/verifyResetCodeResponse';
 
@@ -53,18 +50,8 @@ export class AuthService implements autApi {
   LOGIN(data: login): Observable<general> {
     return this._httpClient
       .post<LoginRegisterResponse>(this._baseUrl + authEndPoint.SIGNIN, data)
-      .pipe(map((res) => this._authApiAdaptorService.adapt(res)));
-  }
-  CHANGEPASSWORD(data: CHANGEPASSWORD): Observable<ChangePasswordResponse> {
-    return this._httpClient
-      .patch<ChangePasswordResponse>(
-        this._baseUrl + authEndPoint.CHANGEPASSWORD,
-        data,
-      )
       .pipe(
-        map((res: ChangePasswordResponse) =>
-          this._authApiAdaptorService.adaptorChangePasowrd(res),
-        ),
+        map((res) => this._authApiAdaptorService.adapt(res)),
         catchError((err) => of(err)),
       );
   }
@@ -79,18 +66,6 @@ export class AuthService implements autApi {
         map((res: forgetPasswordResponse) =>
           this._authApiAdaptorService.adaptSendOtp(res),
         ),
-        catchError((err) => of(err)),
-      );
-  }
-
-  VERIFYRESETCODE(data: restCode): Observable<verifyResetCodeResponse> {
-    return this._httpClient
-      .post<verifyResetCodeResponse>(
-        this._baseUrl + authEndPoint.VERIFYRESETCODE,
-        data,
-      )
-      .pipe(
-        map((res) => this._authApiAdaptorService.adaptverifyResetCode(res)),
         catchError((err) => of(err)),
       );
   }

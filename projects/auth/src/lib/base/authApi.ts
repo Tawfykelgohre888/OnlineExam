@@ -1,10 +1,8 @@
-import { Observable } from "rxjs";
+import { Observable } from 'rxjs';
 
-export abstract class autApi{
-  abstract LOGIN(data:any):Observable<any>;
-  abstract REGISTER(data:any):Observable<any>;
-  abstract FORGETPASSWORD(data:any):Observable<any>
-  abstract CHANGEPASSWORD(data:any):Observable<any>
-  abstract VERIFYRESETCODE(data:any):Observable<any>
-  abstract RESETPASSWORD(data:any):Observable<any>
+export abstract class autApi {
+  abstract LOGIN(data: any): Observable<any>;
+  abstract REGISTER(data: any): Observable<any>;
+  abstract FORGETPASSWORD(data: any): Observable<any>;
+  abstract RESETPASSWORD(data: any): Observable<any>;
 }

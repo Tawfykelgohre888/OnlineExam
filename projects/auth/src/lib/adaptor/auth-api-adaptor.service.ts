@@ -12,13 +12,13 @@ import { verifyResetCodeResponse } from '../interfaces/verifyResetCodeResponse';
 export class AuthApiAdaptorService implements Adaptor {
   adapt(data: LoginRegisterResponse): general {
     return {
-      message: data.message,
-      token: data.token,
-      email: data?.user?.email!,
+      message: data.status ? 'Login successful' : 'Login failed',
+      token: data.payload.token,
+      email: data.payload.user.email,
     };
   }
 
-  adaptorChangePasowrd(res: ChangePasswordResponse): general {
+  adaptorChangePassword(res: ChangePasswordResponse): general {
     return {
       message: res.message,
       token: res.token,

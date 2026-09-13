@@ -8,7 +8,7 @@ export const routes: Routes = [
   {
     path: '',
     component: AuthlayoutComponent,
-    canActivate: [mainGuard],
+    // canActivate: [mainGuard],
     children: [
       { path: '', redirectTo: 'login', pathMatch: 'full' },
       {
@@ -36,15 +36,7 @@ export const routes: Routes = [
         title: 'FORGETPASSWORD',
       },
       {
-        path: 'verifyresetcode',
-        loadComponent: () =>
-          import('./Feature/Auth/verifyresetcode/verifyresetcode.component').then(
-            (c) => c.VerifyresetcodeComponent,
-          ),
-        title: 'VERIFYRESETCODE',
-      },
-      {
-        path: 'RESETPASSWORD',
+        path: 'resetPassword',
         loadComponent: () =>
           import('./Feature/Auth/Pages/resetpassword/resetpassword.component').then(
             (c) => c.RESETPASSWORDComponent,

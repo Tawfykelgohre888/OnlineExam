@@ -32,7 +32,7 @@ export class ForgetpasswordComponent {
       this._authService.FORGETPASSWORD(payload).subscribe({
         next: (res) => {
           this.toster.success(res.message);
-          this.router.navigate(['/verifyresetcode']);
+          this.router.navigate(['/resetPassword']);
         },
       });
     } else {

@@ -4,7 +4,6 @@ import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../../../../projects/auth/src/lib/auth.service';
 import { ToastrService } from 'ngx-toastr';
 import {
-  email,
   required,
   storePasswordValidator,
 } from '../../../../shared/validators/validators';
@@ -26,25 +25,32 @@ export class LoginComponent {
   _authService = inject(AuthService);
   passwordVisible: boolean = false;
   loginForm = new FormGroup({
-    email: new FormControl('', [required, email]),
+    username: new FormControl('', [required]),
     password: new FormControl('', [required, storePasswordValidator]),
   });
 
   // start Logic Login
   LoginPost() {
     const payload = {
-      email: this.loginForm.value.email!,
+      username: this.loginForm.value.username!,
       password: this.loginForm.value.password!,
     };
     if (this.loginForm.valid) {
       this._authService.LOGIN(payload).subscribe({
         next: (res) => {
           localStorage.setItem('userToken', res.token);
+
+          console.log('Login successful:', res);
+          console.log('Login successful Token:', res.token);
           this.toster.success(
             'You have successfully logged in.',
             'Login Successful',
           );
           this.router.navigate(['/mainLayout/dashboard']);
+        },
+        error: (err) => {
+          console.error('Login failed:', err);
+          this.toster.error('Invalid username or password.', 'Login Failed');
         },
       });
     } else {
