@@ -1,12 +1,74 @@
-<div class="mt-5">
-  <form class="p-fluid flex items-center gap-3 p-2 w-full">
-    <p-floatLabel>
-      <input pInputText id="firstName" class="p-2 w-50" />
-      <label for="firstName">First Name</label>
-    </p-floatLabel>
-    <p-floatLabel>
-      <input pInputText id="lastName" class="p-2 w-50" />
-      <label for="lastName">Last Name</label>
-    </p-floatLabel>
+<div class="w-full shadow-md h-full">
+  <form class="p-fluid gap-3 p-2 w-full" [formGroup]="userForm">
+    <div class="flex items-center w-full gap-3">
+      <div class="card flex flex-col justify-center">
+        <label for="firstName">First Name</label>
+        <input
+          class="p-inputtext w-100"
+          type="text"
+          pInputText
+          formControlName="firstName"
+        />
+      </div>
+      <div class="card flex flex-col justify-center">
+        <label for="lastName">Last Name</label>
+        <input
+          class="p-inputtext w-100"
+          type="text"
+          pInputText
+          formControlName="lastName"
+        />
+      </div>
+    </div>
+    <div class="card flex flex-col justify-center">
+      <label for="username">Username</label>
+      <input
+        class="p-inputtext w-100"
+        class="p-inputtext"
+        type="text"
+        pInputText
+        formControlName="username"
+      />
+    </div>
+    <div class="card flex flex-col justify-center">
+      <label for="email">Email</label>
+      <input
+        class="p-inputtext w-100"
+        class="p-inputtext"
+        type="Email"
+        pInputText
+        formControlName="email"
+      />
+    </div>
+    <div class="card flex flex-col justify-center">
+      <label for="phone">Phone</label>
+      <input
+        class="p-inputtext w-100"
+        class="p-inputtext"
+        type="tel"
+        pInputText
+        formControlName="phone"
+      />
+    </div>
+    <div class="flex justify-around mt-5">
+      <div class="card flex justify-content-center gap-2">
+        <p-toast />
+        <p-confirmDialog />
+        <p-button
+          (onClick)="confirm($event)"
+          label="Delete"
+          severity="danger"
+          [outlined]="true"
+        />
+      </div>
+      <button
+        type="button"
+        class="bg-[#155DFC] text-white px-6 py-3 disabled:bg-blue-200 disabled:cursor-not-allowed"
+        [disabled]="userForm.pristine || userForm.invalid"
+        (click)="updateProfile()"
+      >
+        Save Change
+      </button>
+    </div>
   </form>
 </div>

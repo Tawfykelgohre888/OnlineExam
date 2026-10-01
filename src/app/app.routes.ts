@@ -28,20 +28,20 @@ export const routes: Routes = [
         title: 'register',
       },
       {
-        path: 'forgetPassword',
+        path: 'auth_flow',
         loadComponent: () =>
-          import('./Feature/Auth/Pages/forgetpassword/forgetpassword.component').then(
-            (c) => c.ForgetpasswordComponent,
+          import('../app/Feature/Auth/Pages/auth-flow/auth-flow.component').then(
+            (c) => c.AuthFlowComponent,
           ),
-        title: 'FORGETPASSWORD',
+        title: 'Auth Flow',
       },
       {
-        path: 'resetPassword',
+        path: 'resetPass',
         loadComponent: () =>
-          import('./Feature/Auth/Pages/resetpassword/resetpassword.component').then(
-            (c) => c.RESETPASSWORDComponent,
+          import('./Feature/Auth/Pages/reset-password/reset-password.component').then(
+            (c) => c.ResetPasswordComponent,
           ),
-        title: 'RESETPASSWORD',
+        title: 'Reset Password',
       },
     ],
   },
@@ -60,14 +60,7 @@ export const routes: Routes = [
           ),
         title: 'dashboard',
       },
-      {
-        path: 'exams/:id',
-        loadComponent: () =>
-          import('./Feature/Exam/pages/exams/exams.component').then(
-            (c) => c.ExamsComponent,
-          ),
-        title: 'exams',
-      },
+
       {
         path: 'accountSetting',
         loadChildren: () =>

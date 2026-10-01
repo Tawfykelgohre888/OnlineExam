@@ -56,9 +56,9 @@ export class MainLayoutComponent implements OnInit {
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
         next: (res) => {
-          this.userName.set(res.user.firstName);
-          this.lastName.set(res.user.lastName);
-          this.email.set(res.user.email);
+          this.userName.set(res.payload.user.firstName);
+          this.lastName.set(res.payload.user.lastName);
+          this.email.set(res.payload.user.email);
         },
       });
   }

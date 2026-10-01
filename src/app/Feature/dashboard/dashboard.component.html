@@ -8,30 +8,30 @@
     />
     <!-- Responsive Grid -->
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 p-5 gap-5">
-      @for (subject of subjects.slice(0, limit); track subject._id) {
+      @for (subject of subjects; track subject.id) {
         <div
           class="group relative w-full border border-gray-200 shadow hover:shadow-lg transition-all duration-300"
         >
           <!-- Image -->
           <img
-            class="w-full object-cover"
-            [src]="subject.icon"
-            alt="{{ subject.name }}"
-            [routerLink]="['/mainLayout/exams', subject._id]"
+            class="w-full h-[570px] object-cover"
+            [src]="subject.image"
+            alt="{{ subject.title }}"
+            [routerLink]="['/mainLayout/exams', subject.id]"
           />
 
           <!-- Overlay -->
           <div
-            class="absolute inset-0 flex justify-center items-center pointer-events-none"
+            class="absolute inset-0 left-10 flex justify-center items-center pointer-events-none"
           >
             <div
-              class="bg-[#1935CA]/70 text-center px-4 py-3 absolute transition top-92 start-0 bottom-0 w-full h-50"
+              class="bg-[#1935CA]/70 text-center px-4 py-3 absolute transition top-92 start-0 bottom-0 w-[90%] h-50"
             >
               <p class="text-white text-lg font-bold">
-                {{ subject.name }}
+                {{ subject.title }}
               </p>
               <p class="text-white text-sm">
-                {{ getCourseDescription(subject.name) }}
+                {{ subject.description }}
               </p>
             </div>
           </div>

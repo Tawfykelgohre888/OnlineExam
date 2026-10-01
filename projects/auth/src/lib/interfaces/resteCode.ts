@@ -1,12 +1,7 @@
 export interface restCode {
-  resetCode:string;
-
+  resetCode: string;
 }
-
-
 
 export interface response {
-  message: string
+  message: string;
 }
-
-

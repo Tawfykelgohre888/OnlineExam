@@ -1,18 +1,27 @@
-export interface Subject {
-  _id: string;
-  name: string;
-  icon: string;
-  createdAt: string;
+export interface subjects {
+  status: boolean;
+  code: number;
+  payload: Payload;
+}
+
+export interface Payload {
+  data: Datum[];
+  metadata: Metadata;
 }
 
 export interface Metadata {
-  currentPage: number;
-  numberOfPages: number;
+  page: number;
   limit: number;
+  total: number;
+  totalPages: number;
 }
 
-export interface GetSubjectsResponse {
-  message: string;
-  metadata: Metadata;
-  subjects: Subject[];
+export interface Datum {
+  id: string;
+  title: string;
+  description: string;
+  image: string;
+  immutable: boolean;
+  createdAt: string;
+  updatedAt: string;
 }

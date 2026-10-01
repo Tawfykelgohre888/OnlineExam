@@ -28,7 +28,6 @@ export class AuthApiAdaptorService implements Adaptor {
   adaptSendOtp(res: forgetPasswordResponse): forgetPasswordResponse {
     return {
       message: res.message,
-      info: res.info,
     };
   }
 

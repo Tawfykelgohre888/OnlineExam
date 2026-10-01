@@ -29,11 +29,13 @@
       </div>
       <div class="w-full flex justify-end">
         <a
-          class="no-underline text-blue-600 text-lg hover:text-blue-800 hover:underline cursor-pointer transition-all duration-300 font-semibold"
-          routerLink="/forgetPassword"
-          >Forgot your password?</a
+          routerLink="/auth_flow"
+          class="no-underline text-blue-600 text-sm hover:text-blue-800 hover:underline cursor-pointer transition-all duration-300 font-semibold"
         >
+          Forgot your password?
+        </a>
       </div>
+
       <button
         type="submit"
         [disabled]="loginForm.invalid"

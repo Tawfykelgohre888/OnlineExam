@@ -1,3 +1,4 @@
 export interface forgetPassword {
-  email:string;
+  email: string;
+  redirectUrl: string;
 }

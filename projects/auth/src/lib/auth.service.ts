@@ -4,7 +4,6 @@ import { catchError, map, Observable, of, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { authEndPoint } from './enums/endPoindApt';
 import { AuthApiAdaptorService } from './adaptor/auth-api-adaptor.service';
-import { BASEURL } from './base-url';
 import { login } from './interfaces/loginInterface';
 import { forgetPassword } from './interfaces/forgetPassword';
 import { RESETPASSWORD } from './interfaces/restePassword';
@@ -13,6 +12,7 @@ import { general } from './interfaces/genralAdptor';
 import { LoginRegisterResponse } from './interfaces/backAdapt';
 import { forgetPasswordResponse } from './interfaces/forgetPasswordResponse';
 import { verifyResetCodeResponse } from './interfaces/verifyResetCodeResponse';
+import { BASEURL } from './base-url';
 
 @Injectable({
   providedIn: 'root',
@@ -66,7 +66,7 @@ export class AuthService implements autApi {
         map((res: forgetPasswordResponse) =>
           this._authApiAdaptorService.adaptSendOtp(res),
         ),
-        catchError((err) => of(err)),
+        // catchError((err) => of(err)),
       );
   }
 

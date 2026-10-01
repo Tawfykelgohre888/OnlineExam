@@ -1,16 +1,24 @@
-export interface ProfileData {
-  message: string;
+export interface userProfileData {
+  status: boolean;
+  code: number;
+  payload: Payload;
+}
+
+export interface Payload {
   user: User;
 }
 
 export interface User {
-  _id: string;
+  id: string;
   username: string;
-  firstName: string;
-  lastName: string;
   email: string;
   phone: string;
+  firstName: string;
+  lastName: string;
+  profilePhoto: null;
+  emailVerified: boolean;
+  phoneVerified: boolean;
   role: string;
-  isVerified: boolean;
   createdAt: string;
+  updatedAt: string;
 }

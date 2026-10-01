@@ -1,0 +1,59 @@
+<div class="auth_flow w-[120%]">
+  @if (step() == 1) {
+    <h2 class="font-bold text-3xl">Forgot Password</h2>
+
+    <p class="text-[#6B7280] text-lg font-normal">
+      Don’t worry, we will help you recover your <br />
+      account.
+    </p>
+
+    <div class="flex flex-col mt-2 p-2">
+      <form [formGroup]="emailForm" (ngSubmit)="forgetPass()">
+        <label class="text-base font-medium" for="Email"> Email </label>
+
+        <input
+          id="Email"
+          type="email"
+          placeholder="user@example.com"
+          pInputText
+          formControlName="email"
+        />
+
+        <button type="submit" class="bg-blue-600 mt-2 p-3 w-full text-white">
+          Next
+          <i class="pi pi-arrow-right"></i>
+        </button>
+      </form>
+      <p class="mt-4">
+        Don’t have an account?
+        <span class="text-blue-600 font-bold">Create yours</span>
+      </p>
+    </div>
+  }
+  @if (step() == 2) {
+    <div class="p-2 w-fit border border-gray-500" (click)="step.set(1)">
+      <a routerLink="/auth_flow"
+        ><i class="pi pi-arrow-circle-left text-2xl"></i
+      ></a>
+    </div>
+    <h2 class="font-bold text-3xl my-5">Password Reset Sent</h2>
+
+    <p class="text-[#6B7280] text-lg font-normal my-7">
+      We have sent a password reset link to: <br />
+      <span class="text-blue-500">{{ sendEmail() }}.</span>
+    </p>
+
+    <p class="text-lg font-normal my-5">
+      Please check your inbox and follow the instructions to reset your
+      password.
+    </p>
+    <p class="text-[#6B7280] text-lg font-normal my-5">
+      If you don’t see the email within a few minutes, check your spam or junk
+      folder.
+    </p>
+    <span
+      >Don’t have an account?
+      <a class="text-blue-500 text-2xl" routerLink="/register">Create yours</a>
+    </span>
+  }
+</div>

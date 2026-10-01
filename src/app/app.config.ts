@@ -1,8 +1,4 @@
-import {
-  ApplicationConfig,
-  importProvidersFrom,
-  provideZoneChangeDetection,
-} from '@angular/core';
+import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
@@ -16,7 +12,6 @@ import {
   withInterceptors,
 } from '@angular/common/http';
 import { environment } from './shared/environment/environment';
-import { BASEURL } from '../../projects/auth/src/lib/base-url';
 import { headersInterceptor } from './core/Interceptor/headers/headers.interceptor';
 import { provideAnimations } from '@angular/platform-browser/animations';
 
@@ -24,22 +19,20 @@ import { provideToastr } from 'ngx-toastr';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { providePrimeNG } from 'primeng/config';
 import Aura from '@primeuix/themes/aura';
-import { NgxSpinnerModule } from 'ngx-spinner';
 import { lodingInterceptor } from './core/Interceptor/loding/loding.interceptor';
 import { errorInterceptor } from './core/Interceptor/error/error.interceptor';
-import { provideStore } from '@ngrx/store';
-import { modalReducer } from './store/modal/modal.reducer';
-import { provideEffects } from '@ngrx/effects';
-import { questionsEffects } from './store/questions/questions.effect';
-import { modalEffects } from './store/modal/modal.effects';
-import { questionReducer } from './store/questions/qustions.reducer';
+
 import { provideTranslateService } from '@ngx-translate/core';
 import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { BASEURL } from '../../projects/auth/src/public-api';
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideClientHydration(withEventReplay()),
+    MessageService,
+    ConfirmationService,
     provideHttpClient(
       withFetch(),
       withInterceptors([
@@ -51,11 +44,7 @@ export const appConfig: ApplicationConfig = {
     provideAnimations(),
     provideAnimationsAsync(),
     provideToastr(),
-    importProvidersFrom(NgxSpinnerModule),
-    provideStore({
-      modal: modalReducer,
-      questions: questionReducer,
-    }),
+
     providePrimeNG({
       theme: {
         preset: Aura,
@@ -65,8 +54,7 @@ export const appConfig: ApplicationConfig = {
       provide: BASEURL,
       useValue: environment.BASE_URL,
     },
-    provideEffects(questionsEffects, modalEffects),
-    // NgxTranslate
+
     provideTranslateService({
       loader: provideTranslateHttpLoader({
         prefix: '/i18n/',

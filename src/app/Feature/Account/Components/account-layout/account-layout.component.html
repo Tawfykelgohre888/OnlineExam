@@ -1,4 +1,5 @@
-<div class="p-12 sm:ml-64 shadow-md">
+<div class="p-15 sm:ml-64 shadow-md h-full">
+  ">
   <app-page-header
     [title]="'Account Settings'"
     [subtitle]="'Manage your account information'"
@@ -8,26 +9,26 @@
   <div class="grid grid-cols-12 gap-5 mt-4">
     <div class="text-white col-span-3 rounded-md bg-white shadow p-4">
       <div
-        [routerLink]="'/mainLayout/accountSettings'"
-        [routerLinkActive]="'bg-blue-200 text-blue-500'"
+        [routerLink]="'/mainLayout/accountSetting/accountSetting'"
+        [routerLinkActive]="'bg-[#EFF6FF] text-blue-500  rounded-md '"
         class="flex items-center gap-2 px-4 py-3 cursor-pointer mb-5"
       >
         <div
           class="w-10 h-10 rounded-full bg-gray-500 flex items-center justify-center"
         >
-          <i class="pi pi-user" style="font-size: 1.5rem"></i>
+          <i class="pi pi-user text-white" style="font-size: 1.5rem"></i>
         </div>
         <p class="text-[#155DFC] font-normal text-base">Profile</p>
       </div>
       <div
-        [routerLink]="'/mainLayout/changePassword'"
-        [routerLinkActive]="'bg-blue-200 text-blue-500'"
+        [routerLink]="'/mainLayout/accountSetting/changePassword'"
+        [routerLinkActive]="'bg-[#EFF6FF] text-blue-500  rounded-md '"
         class="flex items-center gap-2 px-4 py-3 cursor-pointer"
       >
         <div
           class="w-10 h-10 rounded-full bg-gray-500 flex items-center justify-center"
         >
-          <i class="pi pi-lock" style="font-size: 1.5rem"></i>
+          <i class="pi pi-lock text-white" style="font-size: 1.5rem"></i>
         </div>
         <p class="text-[#155DFC] font-normal text-base">Change Password</p>
       </div>

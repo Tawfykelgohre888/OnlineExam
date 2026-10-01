@@ -17,10 +17,8 @@ import { AppInputComponent } from '../../../../shared/components/Form/app-input/
   styleUrl: './login.component.scss',
 })
 export class LoginComponent {
-  constructor(
-    private router: Router,
-    private toster: ToastrService,
-  ) {}
+  private readonly _router = inject(Router);
+  private readonly _toster = inject(ToastrService);
 
   _authService = inject(AuthService);
   passwordVisible: boolean = false;
@@ -38,19 +36,24 @@ export class LoginComponent {
     if (this.loginForm.valid) {
       this._authService.LOGIN(payload).subscribe({
         next: (res) => {
+          if (!res.token) {
+            this._toster.error(
+              'Login response does not contain a token.',
+              'Login Failed',
+            );
+            return;
+          }
           localStorage.setItem('userToken', res.token);
 
-          console.log('Login successful:', res);
-          console.log('Login successful Token:', res.token);
-          this.toster.success(
+          this._toster.success(
             'You have successfully logged in.',
             'Login Successful',
           );
-          this.router.navigate(['/mainLayout/dashboard']);
+          this._router.navigate(['/mainLayout/dashboard']);
         },
         error: (err) => {
           console.error('Login failed:', err);
-          this.toster.error('Invalid username or password.', 'Login Failed');
+          this._toster.error('Invalid username or password.', 'Login Failed');
         },
       });
     } else {
