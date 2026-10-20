@@ -1,4 +1,4 @@
-import { Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
+import { Component, DestroyRef, inject, signal } from '@angular/core';
 import {
   Router,
   RouterLink,
@@ -9,8 +9,6 @@ import { DeleteMyAccountService } from '../../Feature/Auth/Services/delete-my-ac
 import { ToastrService } from 'ngx-toastr';
 import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
-import { ProfileDataService } from '../../Feature/Account/Services/profile-data.service';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { AvatarModule } from 'primeng/avatar';
 
 import { InputTextModule } from 'primeng/inputtext';
@@ -28,10 +26,8 @@ import { InputTextModule } from 'primeng/inputtext';
   templateUrl: './main-layout.component.html',
   styleUrl: './main-layout.component.scss',
 })
-export class MainLayoutComponent implements OnInit {
+export class MainLayoutComponent {
   private readonly deleteMyAccountService = inject(DeleteMyAccountService);
-  private readonly profileDataService = inject(ProfileDataService);
-  private destroyRef = inject(DestroyRef);
   private readonly toster = inject(ToastrService);
   router = inject(Router);
   deleteDialog = signal(false);
@@ -49,20 +45,6 @@ export class MainLayoutComponent implements OnInit {
     this.router.navigate(['/login']);
   }
 
-  // Get user profile data
-  getProfileData() {
-    this.profileDataService
-      .getProfileData()
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe({
-        next: (res) => {
-          this.userName.set(res.payload.user.firstName);
-          this.lastName.set(res.payload.user.lastName);
-          this.email.set(res.payload.user.email);
-        },
-      });
-  }
-
   deleteMyAccount(): void {
     this.deleteMyAccountService.deleteAccount().subscribe({
       next: (res) => {
@@ -74,9 +56,5 @@ export class MainLayoutComponent implements OnInit {
         this.toster.error(err.message);
       },
     });
-  }
-
-  ngOnInit(): void {
-    this.getProfileData();
   }
 }
